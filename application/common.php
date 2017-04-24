@@ -13,3 +13,4 @@
 use think\Route;
 // admin子域名绑定到admin模块
 Route::domain('admin','admin');
+Route::domain('tp5.com','index');

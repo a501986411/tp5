@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"E:\project\tp5\public/../application/index\view\index\index.html";i:1492680200;s:66:"E:\project\tp5\public/../application/index\view\layout\layout.html";i:1493003869;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"E:\project\tp5\public/../application/index\view\index\index.html";i:1492680200;s:66:"E:\project\tp5\public/../application/index\view\layout\layout.html";i:1493011699;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -45,14 +45,14 @@
         </div>
     </div>
 </nav>
-<div class="container-fluid">
+<div class="container no-mg-lf no-mg-rt">
     <div class="row">
         <div class="col-sm-3 col-md-1 sidebar no-pd-lf no-pd-rt">
             <!--卡车业务-->
             <ul class="nav nav-sidebar hidden kc">
                 <li class="active second-menu"><a href="#">卡车投放<span class="caret-up"></span></a></li>
                 <ul class="nav hidden">
-                    <li><a href="#">投放申请</a></li>
+                    <li><a href="/index/createIndex">投放申请</a></li>
                     <li><a href="#">投放审批</a></li>
                     <li><a href="#">投放执行</a></li>
                 </ul>
@@ -76,7 +76,8 @@
                 <li class="active second-menu"><a href="#">配件销售<span class="caret-up"></span></a></li>
             </ul>
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-2 main">
+        <div class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-2 main no-mg-lf">
+            skljfsklafjsdklfkldj
         </div>
     </div>
 </div>

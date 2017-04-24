@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:70:"E:\project\tp5\public/../application/index\view\index\createindex.html";i:1492677102;s:66:"E:\project\tp5\public/../application/index\view\layout\layout.html";i:1492678010;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:70:"E:\project\tp5\public/../application/index\view\index\createindex.html";i:1492680200;s:66:"E:\project\tp5\public/../application/index\view\layout\layout.html";i:1493011739;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -17,80 +17,67 @@
 <nav class="navbar best-top-menu">
     <div class="container-fluid">
         <div class="navbar-collapse collapse extend-width no-pd-lf no-pd-rt">
-            <ul class="nav navbar-nav fr">
-                <li><a href="#">电商中心</a></li>
-                <li><a href="#">OA系统</a></li>
-                <li><a href="#">消息中心</a></li>
-                <li><a href="#">帮助中心</a></li>
-                <li><a href="../../../../../vue/html">安全退出</a></li>
+            <ul class="nav navbar-nav fr menu-font-color">
+                <li><a href="#" class="menu-font-color">电商中心</a></li>
+                <li><a href="#" class="menu-font-color">OA系统</a></li>
+                <li><a href="#" class="menu-font-color">消息中心</a></li>
+                <li><a href="#" class="menu-font-color">帮助中心</a></li>
+                <li><a href="" class="menu-font-color">安全退出</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<nav class="navbar no-bd-tp no-mg-bt">
+<nav class="navbar no-bd-tp no-mg-bt no-bd-bt no-bd-lf no-bd-rt">
     <div class="container-fluid no-pd-lf no-pd-rt no-mg-rt">
         <div id="navbarTop2" class="navbar-collapse collapse extend-width no-pd-lf no-pd-rt first-menu-bg-color">
             <ul class="nav navbar-nav navbar-left">
-                <li><a href="#">卡车业务</a></li>
-                <li><a href="#">配件业务</a></li>
-                <li><a href="#">维修业务</a></li>
-                <li><a href="#">综合业务</a></li>
-                <li><a href="#">外勤中心</a></li>
-                <li><a href="#">优惠中心</a></li>
-                <li><a href="#">商品管理</a></li>
-                <li><a href="#">财务管理</a></li>
-                <li><a href="#">报表中心</a></li>
-                <li><a href="#">设置中心</a></li>
+                <li class="first-menu" data-class = 'kc'><a href="#" class="menu-font-color">卡车业务</a></li>
+                <li class="first-menu" data-class = 'pj'><a href="#" class="menu-font-color">配件业务</a></li>
+                <li class="first-menu"><a href="#" class="menu-font-color">维修业务</a></li>
+                <li class="first-menu"><a href="#" class="menu-font-color">综合业务</a></li>
+                <li class="first-menu"><a href="#" class="menu-font-color">外勤中心</a></li>
+                <li class="first-menu"><a href="#" class="menu-font-color">优惠中心</a></li>
+                <li class="first-menu"><a href="#" class="menu-font-color">商品管理</a></li>
+                <li class="first-menu"><a href="#" class="menu-font-color">财务管理</a></li>
+                <li class="first-menu"><a href="#" class="menu-font-color">报表中心</a></li>
+                <li class="first-menu"><a href="#" class="menu-font-color">设置中心</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<div class="container-fluid no-pd-lf no-pd-rt no-mg">
-    <div class="row no-mg" style="height:300px;">
-        <div class="col-lg-1 no-pd-lf no-pd-rt">
-            <nav class="navbar">
-                <div class="container-fluid no-pd-lf no-pd-rt no-mg-rt">
-                    <div class="navbar-collapse collapse no-pd-lf no-pd-rt extend-width">
-                        <ul class="nav nav-divider">
-                            <li class="dropdown">
-                                <a href="#" role="button" class="second_menu">卡车采购<span class="caret"></span></a>
-                                <ul class="navbar-nav hidden">
-                                    <li class="third-menu-li"><a href="#">采购订单</a></li>
-                                    <li class="third-menu-li"><a href="#">订单审批</a></li>
-                                    <li class="third-menu-li"><a href="#">厂家排产</a></li>
-                                    <li class="third-menu-li"><a href="#">底盘上线</a></li>
-                                    <li class="third-menu-li"><a href="#">底盘下线</a></li>
-                                    <li class="third-menu-li"><a href="#">在途改装长</a></li>
-                                    <li class="third-menu-li"><a href="#">改装待上线</a></li>
-                                    <li class="third-menu-li"><a href="#">上装申请</a></li>
-                                    <li class="third-menu-li"><a href="#">上装审批</a></li>
-                                    <li class="third-menu-li"><a href="#">改装上线</a></li>
-                                    <li class="third-menu-li"><a href="#">改装下线</a></li>
-                                    <li class="third-menu-li"><a href="#">在途中转库</a></li>
-                                    <li class="third-menu-li"><a href="#">中转库待发车</a></li>
-                                    <li class="third-menu-li"><a href="#">在途经销商</a></li>
-                                    <li class="third-menu-li"><a href="#">验收入库</a></li>
-                                    <li class="third-menu-li"><a href="#">采购列表</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-divider">
-                            <li class="dropdown">
-                                <a href="#" role="button" class="second_menu">卡车投放<span class="caret"></span></a>
-                                <ul class="navbar-nav hidden">
-                                    <li class="third-menu-li"><a href="#">投放申请</a></li>
-                                    <li class="third-menu-li"><a href="#">投放审批</a></li>
-                                    <li class="third-menu-li"><a href="#">投放执行</a></li>
-                                    <li class="third-menu-li"><a href="#">投放列表</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+<div class="container no-mg-lf no-mg-rt extend-width">
+    <div class="row">
+        <div class="col-sm-3 col-md-1 sidebar no-pd-lf no-pd-rt">
+            <!--卡车业务-->
+            <ul class="nav nav-sidebar hidden kc">
+                <li class="active second-menu"><a href="#">卡车投放<span class="caret-up"></span></a></li>
+                <ul class="nav hidden">
+                    <li><a href="/index/createIndex">投放申请</a></li>
+                    <li><a href="#">投放审批</a></li>
+                    <li><a href="#">投放执行</a></li>
+                </ul>
+
+            </ul>
+            <ul class="nav nav-sidebar hidden kc">
+                <li class="active second-menu"><a href="#">卡车回收<span class="caret-up"></span></a></li>
+            </ul>
+            <!--配件业务-->
+            <ul class="nav nav-sidebar hidden pj">
+                <li class="active second-menu"><a href="#">配件采购<span class="caret-up"></span></a></li>
+                <ul class="nav hidden">
+                    <li><a href="#">采购申请</a></li>
+                    <li><a href="#">采购审批</a></li>
+                    <li><a href="#">厂家发货</a></li>
+                    <li><a href="#">配件入库</a></li>
+                    <li><a href="#">采购列表</a></li>
+                </ul>
+            </ul>
+            <ul class="nav nav-sidebar hidden pj">
+                <li class="active second-menu"><a href="#">配件销售<span class="caret-up"></span></a></li>
+            </ul>
         </div>
-        <div class="col-lg-11 bg-info">
-        createIndex
+        <div class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-2 main no-mg-lf">
+            createIndex
         </div>
     </div>
 </div>
@@ -98,13 +85,25 @@
 <script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/bootstrap.min.js"></script>
 <script>
-    $('.second_menu').click(function(){
+    $('.first-menu').click(function(){
+        var secondClass = $(this).data('class');
+        var oldClass = $('.'+secondClass).hasClass('hidden');
+        if(oldClass){
+            $('.second-menu').parent('ul').addClass('hidden');
+            $('.'+secondClass).removeClass('hidden');
+        }
+    });
+
+    $('.second-menu').click(function(){
         var oldClass = $(this).next('ul').hasClass('hidden');
-        $('.second_menu').next('ul').addClass('hidden');
+        $('.second-menu').next('ul').addClass('hidden');
+        $('.second-menu').find('a').find('span').prop('class','caret-up');
         if(!oldClass){
             $(this).next('ul').addClass('hidden');
+            $('.second-menu').find('a').find('span').prop('class','caret-up');
         } else{
             $(this).next('ul').removeClass('hidden');
+            $('.second-menu').find('a').find('span').prop('class','caret');
         }
 
     });
