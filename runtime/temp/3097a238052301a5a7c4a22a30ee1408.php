@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"E:\project\tp5\public/../application/index\view\index\index.html";i:1492680200;s:66:"E:\project\tp5\public/../application/index\view\layout\layout.html";i:1493011699;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"E:\project\tp5\public/../application/index\view\index\index.html";i:1493023431;s:66:"E:\project\tp5\public/../application/index\view\layout\layout.html";i:1493015444;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -45,14 +45,14 @@
         </div>
     </div>
 </nav>
-<div class="container no-mg-lf no-mg-rt">
+<div class="container no-mg-lf no-mg-rt extend-width">
     <div class="row">
         <div class="col-sm-3 col-md-1 sidebar no-pd-lf no-pd-rt">
             <!--卡车业务-->
             <ul class="nav nav-sidebar hidden kc">
                 <li class="active second-menu"><a href="#">卡车投放<span class="caret-up"></span></a></li>
                 <ul class="nav hidden">
-                    <li><a href="/index/createIndex">投放申请</a></li>
+                    <li><a href="/index/index?menuId=1" id="second_menu_1">投放申请</a></li>
                     <li><a href="#">投放审批</a></li>
                     <li><a href="#">投放执行</a></li>
                 </ul>
@@ -65,7 +65,7 @@
             <ul class="nav nav-sidebar hidden pj">
                 <li class="active second-menu"><a href="#">配件采购<span class="caret-up"></span></a></li>
                 <ul class="nav hidden">
-                    <li><a href="#">采购申请</a></li>
+                    <li><a href="/index/createIndex">采购申请</a></li>
                     <li><a href="#">采购审批</a></li>
                     <li><a href="#">厂家发货</a></li>
                     <li><a href="#">配件入库</a></li>
@@ -77,7 +77,9 @@
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-2 main no-mg-lf">
-            skljfsklafjsdklfkldj
+            <div data-yw="kc" class="content">
+    卡车业务
+</div>
         </div>
     </div>
 </div>
@@ -107,5 +109,16 @@
         }
 
     });
+
+
+    $(document).ready(function(){
+        var secondClass = $('.content').data('yw');
+        var oldClass = $('.'+secondClass).hasClass('hidden');
+        if(oldClass){
+            $('.second-menu').parent('ul').addClass('hidden');
+            $('.'+secondClass).removeClass('hidden');
+        }
+    });
+
 </script>
 </html>

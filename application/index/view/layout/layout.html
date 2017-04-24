@@ -51,7 +51,7 @@
             <ul class="nav nav-sidebar hidden kc">
                 <li class="active second-menu"><a href="#">卡车投放<span class="caret-up"></span></a></li>
                 <ul class="nav hidden">
-                    <li><a href="/index/createIndex">投放申请</a></li>
+                    <li><a href="/index/index?menuId=1" id="second_menu_1">投放申请</a></li>
                     <li><a href="#">投放审批</a></li>
                     <li><a href="#">投放执行</a></li>
                 </ul>
@@ -64,7 +64,7 @@
             <ul class="nav nav-sidebar hidden pj">
                 <li class="active second-menu"><a href="#">配件采购<span class="caret-up"></span></a></li>
                 <ul class="nav hidden">
-                    <li><a href="#">采购申请</a></li>
+                    <li><a href="/index/createIndex">采购申请</a></li>
                     <li><a href="#">采购审批</a></li>
                     <li><a href="#">厂家发货</a></li>
                     <li><a href="#">配件入库</a></li>
@@ -106,5 +106,16 @@
         }
 
     });
+
+
+    $(document).ready(function(){
+        var secondClass = $('.content').data('yw');
+        var oldClass = $('.'+secondClass).hasClass('hidden');
+        if(oldClass){
+            $('.second-menu').parent('ul').addClass('hidden');
+            $('.'+secondClass).removeClass('hidden');
+        }
+    });
+
 </script>
 </html>
