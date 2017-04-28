@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"E:\project\tp5\public/../application/index\view\index\index.html";i:1493023431;s:66:"E:\project\tp5\public/../application/index\view\layout\layout.html";i:1493375136;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:70:"E:\project\tp5\public/../application/index\view\index\createindex.html";i:1493012277;s:66:"E:\project\tp5\public/../application/index\view\layout\layout.html";i:1493375136;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -77,8 +77,8 @@
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-2 main no-mg-lf">
-            <div data-yw="kc" class="content">
-    卡车业务
+            <div data-yw="pj" class="content">
+    配件业务
 </div>
         </div>
     </div>

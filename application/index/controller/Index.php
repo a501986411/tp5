@@ -1,7 +1,8 @@
 <?php
 namespace app\index\controller;
-class Index
+class Index extends App
 {
+
     public function index()
     {
         return view();
@@ -11,4 +12,5 @@ class Index
     {
         return view();
     }
+
 }

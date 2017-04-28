@@ -10,6 +10,7 @@
 	use think\View;
 	class App
 	{
+
 		protected $menuId;
 		protected $view;
 		public function __construct()
@@ -17,7 +18,7 @@
 			$this->view = new View();
 			if(Request::instance()->has('menuId','get')){
 				$this->menuId = input('get.menuId');
-				$this->view->assign('menuId',$this->menuId);
+				config('menuId',$this->menuId);//设置访问菜单Id
 			}
 		}
 	}
