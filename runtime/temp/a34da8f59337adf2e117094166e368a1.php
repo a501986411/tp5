@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:70:"E:\project\tp5\public/../application/index\view\index\createindex.html";i:1493012277;s:66:"E:\project\tp5\public/../application/index\view\layout\layout.html";i:1493375136;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:70:"E:\project\tp5\public/../application/index\view\index\createindex.html";i:1493012277;s:66:"E:\project\tp5\public/../application/index\view\layout\layout.html";i:1493714704;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -18,10 +18,6 @@
     <div class="container-fluid">
         <div class="navbar-collapse collapse extend-width no-pd-lf no-pd-rt">
             <ul class="nav navbar-nav fr menu-font-color">
-                <li><a href="#" class="menu-font-color">电商中心</a></li>
-                <li><a href="#" class="menu-font-color">OA系统</a></li>
-                <li><a href="#" class="menu-font-color">消息中心</a></li>
-                <li><a href="#" class="menu-font-color">帮助中心</a></li>
                 <li><a href="" class="menu-font-color">安全退出</a></li>
             </ul>
         </div>
@@ -66,7 +62,7 @@
                 <li class="active second-menu"><a href="#">配件采购<span class="caret-up"></span></a></li>
                 <ul class="nav hidden">
                     <li><a href="/index/createIndex?menuId=2" id="second_menu_2">采购申请</a></li>
-                    <li><a href="#">采购审批</a></li>
+                    <li><a href="/index/createIndex?menuId=3" id="second_menu_3">采购审批</a></li>
                     <li><a href="#">厂家发货</a></li>
                     <li><a href="#">配件入库</a></li>
                     <li><a href="#">采购列表</a></li>
@@ -120,7 +116,6 @@
         }
         //展开对应三级菜单
        var bl = $('#second_menu_'+'<?php echo \think\Config::get('menuId'); ?>').parent('li').parent('ul').hasClass('hidden');
-        alert(bl);
         if(bl){
             $('#second_menu_'+'<?php echo \think\Config::get('menuId'); ?>').parent('li').parent('ul').removeClass('hidden');
         }
