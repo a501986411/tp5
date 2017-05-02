@@ -4,27 +4,29 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit6f4c6fc29d62d4e6946cff3a9a69569b
+class ComposerStaticInit72a85f69782724a9ddb9dfee0362af6f
 {
     public static $files = array (
+        '9b552a3cc426e3287cc811caefa3cf53' => __DIR__ . '/..' . '/topthink/think-helper/src/helper.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '1cfd2761b63b0a29ed23657ea394cb2d' => __DIR__ . '/..' . '/topthink/think-captcha/src/helper.php',
-        '72c97b53391125cae04082a81029f42d' => __DIR__ . '/..' . '/topthink/think-testing/src/config.php',
-        '9e05116ddaa5b1d244b68c3993908acd' => __DIR__ . '/..' . '/topthink/think-queue/src/config.php',
         'ddc3cd2a04224f9638c5d0de6a69c7e3' => __DIR__ . '/..' . '/topthink/think-migration/src/config.php',
+        'cc56288302d9df745d97c934d6a6e5f0' => __DIR__ . '/..' . '/topthink/think-queue/src/common.php',
+        '72c97b53391125cae04082a81029f42d' => __DIR__ . '/..' . '/topthink/think-testing/src/config.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         't' => 
         array (
+            'think\\worker\\' => 13,
             'think\\testing\\' => 14,
             'think\\sae\\' => 10,
-            'think\\queue\\' => 12,
             'think\\mongo\\' => 12,
             'think\\migration\\' => 16,
             'think\\helper\\' => 13,
             'think\\composer\\' => 15,
             'think\\captcha\\' => 14,
+            'think\\angular\\' => 14,
             'think\\' => 6,
         ),
         'p' => 
@@ -33,6 +35,7 @@ class ComposerStaticInit6f4c6fc29d62d4e6946cff3a9a69569b
         ),
         'W' => 
         array (
+            'Workerman\\' => 10,
             'Webmozart\\Assert\\' => 17,
         ),
         'S' => 
@@ -52,6 +55,10 @@ class ComposerStaticInit6f4c6fc29d62d4e6946cff3a9a69569b
     );
 
     public static $prefixDirsPsr4 = array (
+        'think\\worker\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/topthink/think-worker/src',
+        ),
         'think\\testing\\' => 
         array (
             0 => __DIR__ . '/..' . '/topthink/think-testing/src',
@@ -59,10 +66,6 @@ class ComposerStaticInit6f4c6fc29d62d4e6946cff3a9a69569b
         'think\\sae\\' => 
         array (
             0 => __DIR__ . '/..' . '/topthink/think-sae/src',
-        ),
-        'think\\queue\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/topthink/think-queue/src',
         ),
         'think\\mongo\\' => 
         array (
@@ -84,15 +87,25 @@ class ComposerStaticInit6f4c6fc29d62d4e6946cff3a9a69569b
         array (
             0 => __DIR__ . '/..' . '/topthink/think-captcha/src',
         ),
+        'think\\angular\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/topthink/think-angular/src',
+        ),
         'think\\' => 
         array (
-            0 => __DIR__ . '/..' . '/topthink/think-image/src',
+            0 => __DIR__ . '/../..' . '/thinkphp/library/think',
+            1 => __DIR__ . '/..' . '/topthink/think-image/src',
+            2 => __DIR__ . '/..' . '/topthink/think-queue/src',
         ),
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+        ),
+        'Workerman\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/workerman/workerman',
         ),
         'Webmozart\\Assert\\' => 
         array (
@@ -498,6 +511,7 @@ class ComposerStaticInit6f4c6fc29d62d4e6946cff3a9a69569b
         'PHP_Token_STRING' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_STRING_CAST' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_STRING_VARNAME' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
+        'PHP_Token_SUPER' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_SWITCH' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_Stream' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token/Stream.php',
         'PHP_Token_Stream_CachingFactory' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token/Stream/CachingFactory.php',
@@ -512,6 +526,7 @@ class ComposerStaticInit6f4c6fc29d62d4e6946cff3a9a69569b
         'PHP_Token_UNSET' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_UNSET_CAST' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_USE' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
+        'PHP_Token_USE_FUNCTION' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_VAR' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_VARIABLE' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_WHERE' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
@@ -566,15 +581,16 @@ class ComposerStaticInit6f4c6fc29d62d4e6946cff3a9a69569b
         'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => __DIR__ . '/..' . '/sebastian/recursion-context/src/InvalidArgumentException.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
+        'think\\view\\driver\\Angular' => __DIR__ . '/..' . '/topthink/think-angular/drivers/thinkphp5/Angular.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit6f4c6fc29d62d4e6946cff3a9a69569b::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit6f4c6fc29d62d4e6946cff3a9a69569b::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit6f4c6fc29d62d4e6946cff3a9a69569b::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit6f4c6fc29d62d4e6946cff3a9a69569b::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit72a85f69782724a9ddb9dfee0362af6f::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit72a85f69782724a9ddb9dfee0362af6f::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit72a85f69782724a9ddb9dfee0362af6f::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit72a85f69782724a9ddb9dfee0362af6f::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -32,7 +32,7 @@ class Builder
     // 最后插入ID
     protected $insertId = [];
     // 查询表达式
-    protected $exp = ['<>' => 'ne', '=' => '=', '>' => 'gt', '>=' => 'gte', '<' => 'lt', '<=' => 'lte', 'in' => 'in', 'not in' => 'nin', 'nin' => 'nin', 'mod' => 'mod', 'exists' => 'exists', 'regex' => 'regex', 'type' => 'type', 'all' => 'all', '> time' => '> time', '< time' => '< time', 'between time' => 'between time', 'not between time' => 'not between time', 'notbetween time' => 'not between time', 'like' => 'like'];
+    protected $exp = ['<>' => 'ne', 'neq' => 'ne', '=' => 'eq', '>' => 'gt', '>=' => 'gte', '<' => 'lt', '<=' => 'lte', 'in' => 'in', 'not in' => 'nin', 'nin' => 'nin', 'mod' => 'mod', 'exists' => 'exists', 'regex' => 'regex', 'type' => 'type', 'all' => 'all', '> time' => '> time', '< time' => '< time', 'between' => 'between', 'not between' => 'not between', 'between time' => 'between time', 'not between time' => 'not between time', 'notbetween time' => 'not between time', 'like' => 'like', 'near' => 'near'];
 
     /**
      * 架构函数
@@ -91,7 +91,9 @@ class Builder
         $result = [];
         foreach ($data as $key => $val) {
             $item = $this->parseKey($key);
-            if (isset($val[0]) && 'exp' == $val[0]) {
+            if (is_object($val)) {
+                $result[$item] = $val;
+            } elseif (isset($val[0]) && 'exp' == $val[0]) {
                 $result[$item] = $val[1];
             } elseif (is_null($val)) {
                 $result[$item] = 'NULL';
@@ -183,14 +185,22 @@ class Builder
 
         // 对一个字段使用多个查询条件
         if (is_array($exp)) {
-            foreach ($val as $item) {
-                $str[] = $this->parseWhereItem($key, $item);
+            $data = [];
+            foreach ($val as $value) {
+                $exp   = $value[0];
+                $value = $value[1];
+                if (!in_array($exp, $this->exp)) {
+                    $exp = strtolower($exp);
+                    if (isset($this->exp[$exp])) {
+                        $exp = $this->exp[$exp];
+                    }
+                }
+                $k        = '$' . $exp;
+                $data[$k] = $value;
             }
-            return $str;
-        }
-
-        // 检测操作符
-        if (!in_array($exp, $this->exp)) {
+            $query[$key] = $data;
+            return $query;
+        } elseif (!in_array($exp, $this->exp)) {
             $exp = strtolower($exp);
             if (isset($this->exp[$exp])) {
                 $exp = $this->exp[$exp];
@@ -251,6 +261,9 @@ class Builder
             // 范围查询
             $value       = is_array($value) ? $value : explode(',', $value);
             $query[$key] = ['$lt' => $this->parseDateTime($value[0], $field), '$gt' => $this->parseDateTime($value[1], $field)];
+        } elseif ('near' == $exp) {
+            // 经纬度查询
+            $query[$key] = ['$near' => $this->parseValue($value, $key)];
         } else {
             // 普通查询
             $query[$key] = $this->parseValue($value, $key);

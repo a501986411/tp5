@@ -2,7 +2,7 @@
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2006~2016 http://thinkphp.cn All rights reserved.
+// | Copyright (c) 2006~2017 http://thinkphp.cn All rights reserved.
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -11,9 +11,6 @@
 
 namespace think;
 
-use think\Config;
-use think\Debug;
-use think\Env;
 use think\response\Json as JsonResponse;
 use think\response\Jsonp as JsonpResponse;
 use think\response\Redirect as RedirectResponse;
@@ -101,6 +98,16 @@ class Response
             Debug::inject($this, $data);
         }
 
+        if (200 == $this->code) {
+            $cache = Request::instance()->getCache();
+            if ($cache) {
+                $this->header['Cache-Control'] = 'max-age=' . $cache[1] . ',must-revalidate';
+                $this->header['Last-Modified'] = gmdate('D, d M Y H:i:s') . ' GMT';
+                $this->header['Expires']       = gmdate('D, d M Y H:i:s', $_SERVER['REQUEST_TIME'] + $cache[1]) . ' GMT';
+                Cache::set($cache[0], [$data, $this->header], $cache[1]);
+            }
+        }
+
         if (!headers_sent() && !empty($this->header)) {
             // 发送状态码
             http_response_code($this->code);
@@ -109,6 +116,7 @@ class Response
                 header($name . ':' . $val);
             }
         }
+
         echo $data;
 
         if (function_exists('fastcgi_finish_request')) {
@@ -116,6 +124,13 @@ class Response
             fastcgi_finish_request();
         }
 
+        // 监听response_end
+        Hook::listen('response_end', $this);
+
+        // 清空当次请求有效的数据
+        if (!($this instanceof RedirectResponse)) {
+            Session::flush();
+        }
     }
 
     /**
@@ -264,7 +279,11 @@ class Response
      */
     public function getHeader($name = '')
     {
-        return !empty($name) ? $this->header[$name] : $this->header;
+        if (!empty($name)) {
+            return isset($this->header[$name]) ? $this->header[$name] : null;
+        } else {
+            return $this->header;
+        }
     }
 
     /**
