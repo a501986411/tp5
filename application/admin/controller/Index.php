@@ -1,10 +1,17 @@
 <?php
-namespace app\admin\controller;
-
-class Index
-{
-    public function index()
+    namespace app\admin\controller;
+    use think\Db;
+    class Index extends App
     {
-        return view();
+
+        public function index()
+        {
+            return view();
+        }
+
+        public function createIndex()
+        {
+            return view();
+        }
+
     }
-}

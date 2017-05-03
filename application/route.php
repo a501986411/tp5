@@ -16,10 +16,5 @@ return [
         ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
         ':name' => ['index/hello', ['method' => 'post']],
     ],
-    '__domain__'=>[
-        'admin'      => 'admin',
-        // 泛域名规则建议在最后定义
-        '*'         => 'index',
-    ],
 ];
 

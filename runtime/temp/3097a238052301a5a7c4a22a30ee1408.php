@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"E:\project\tp5\public/../application/index\view\index\index.html";i:1493023431;s:66:"E:\project\tp5\public/../application/index\view\layout\layout.html";i:1493714704;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"E:\project\tp5\public/../application/index\view\index\index.html";i:1493023431;s:66:"E:\project\tp5\public/../application/index\view\layout\layout.html";i:1493780865;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -23,6 +23,7 @@
         </div>
     </div>
 </nav>
+
 <nav class="navbar no-bd-tp no-mg-bt no-bd-bt no-bd-lf no-bd-rt">
     <div class="container-fluid no-pd-lf no-pd-rt no-mg-rt">
         <div id="navbarTop2" class="navbar-collapse collapse extend-width no-pd-lf no-pd-rt first-menu-bg-color">

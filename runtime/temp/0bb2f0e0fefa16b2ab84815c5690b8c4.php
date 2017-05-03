@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:70:"E:\project\tp5\public/../application/admin\view\menu_manage\index.html";i:1493806077;s:66:"E:\project\tp5\public/../application/admin\view\layout\layout.html";i:1493805569;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -6,10 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content='text/html;charset=utf-8' http-equiv='content-type'>
-    <link rel="stylesheet" href="{$Think.const.STATIC_PATH}bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{$Think.const.STATIC_PATH}bootstrap/css/bootstrap-theme.css">
-    <link rel="stylesheet" href="{$Think.const.STATIC_PATH}css/common.css">
-    <link rel="stylesheet" href="{$Think.const.STATIC_PATH}css/menu.css">
+    <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>bootstrap/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>css/common.css">
+    <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>css/menu.css">
 </head>
 <body>
 <!--顶部导航条-->
@@ -48,25 +49,46 @@
     <div class="row">
         <div class="col-sm-3 col-md-1 sidebar no-pd-lf no-pd-rt">
             <?php foreach($menuTree as $k=>$v):?>
-            <ul class="nav nav-sidebar hidden pid-{$v.id}">
+            <ul class="nav nav-sidebar hidden pid-<?php echo $v['id']; ?>">
                 <?php foreach($v['children'] as $k1=>$v1):?>
-                <li class="active second-menu "><a href="{:url($v1.url,['menuId'=>$v1.pid])}">{$v1.name}</a></li>
+                <li class="active second-menu "><a href="<?php echo url($v1['url'],['menuId'=>$v1['pid']]); ?>"><?php echo $v1['name']; ?></a></li>
                 <?php endforeach; ?>
             </ul>
             <?php endforeach;?>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-2 main no-mg-lf no-pd-rt">
             <div class="panel">
-                {__CONTENT__}
+                <div class="tb-btn-div">
+    <button class="btn btn-success active">新增</button>
+    <button class="btn btn-info active">启用</button>
+    <button class="btn btn-warning active">停用</button>
+</div>
+<div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <tbody>
+            <tr>
+                <th>序号</th>
+                <th>选择</th>
+                <th>名称</th>
+                <th>上级菜单名称</th>
+                <th>状态</th>
+            </tr>
+
+            </tbody>
+
+        </table>
+</div>
+
+
             </div>
 
         </div>
     </div>
 </div>
 </body>
-<script type="text/javascript" src="{$Think.const.STATIC_PATH}js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="{$Think.const.STATIC_PATH}js/bootstrap.min.js"></script>
-<script type="text/javascript" src="{$Think.const.STATIC_PATH}js/jqUnitCookie.js"></script>
+<script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/jqUnitCookie.js"></script>
 <script>
     $('.first-menu').click(function(){
         var secondClass = $(this).data('id');
@@ -88,9 +110,9 @@
             $('.pid-'+menuId).removeClass('hidden');
         }
         //展开对应三级菜单
-        var bl = $('#second_menu_'+'{$Think.config.menuId}').parent('li').parent('ul').hasClass('hidden');
+        var bl = $('#second_menu_'+'<?php echo \think\Config::get('menuId'); ?>').parent('li').parent('ul').hasClass('hidden');
         if(bl){
-            $('#second_menu_'+'{$Think.config.menuId}').parent('li').parent('ul').removeClass('hidden');
+            $('#second_menu_'+'<?php echo \think\Config::get('menuId'); ?>').parent('li').parent('ul').removeClass('hidden');
         }
     });
 </script>

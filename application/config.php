@@ -88,7 +88,7 @@ return [
     // URL普通方式参数 用于自动生成
     'url_common_param'       => false,
     // URL参数方式 0 按名称成对解析 1 按顺序解析
-    'url_param_type'         => 1,
+    'url_param_type'         => 0,
     // 是否开启路由
     'url_route_on'           => true,
     // 路由配置文件（支持配置多个）
@@ -99,8 +99,8 @@ return [
     'url_domain_deploy'      => true,
     // 域名根，如thinkphp.cn
     'url_domain_root'        => '',
-    // 是否自动转换URL中的控制器和操作名
-    'url_convert'            => true,
+    // 是否自动转换URL中的控制器和操作名 (大小写转换，对应试图文件目录名结构规定)
+    'url_convert'            => false,
     // 默认的访问控制器层
     'url_controller_layer'   => 'controller',
     // 表单请求类型伪装变量
@@ -228,6 +228,4 @@ return [
         'type'      => 'bootstrap',
         'list_rows' => 15,
     ],
-
-    'menuId' =>0
 ];
