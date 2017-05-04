@@ -7,4 +7,5 @@
 	 */
 return [
 	'error url'        => '错误的请求地址',
+	'error param'      =>'方法参数错误',
 ];

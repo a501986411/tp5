@@ -1,21 +1,68 @@
-<div class="tb-btn-div">
-    <button class="btn btn-success active">新增</button>
-    <button class="btn btn-info active">启用</button>
-    <button class="btn btn-warning active">停用</button>
+<div id="menu_table_btn">
+    <button type="button" class="btn btn-success">新增</button>
+    <button type="button" class="btn btn-info" id="use_true">启用</button>
+    <button type="button" class="btn btn-warning" id="use_false">停用</button>
 </div>
 <div class="table-responsive">
-        <table class="table table-striped table-bordered">
-            <tbody>
-            <tr>
-                <th>序号</th>
-                <th>选择</th>
-                <th>名称</th>
-                <th>上级菜单名称</th>
-                <th>状态</th>
-            </tr>
-
-            </tbody>
-
-        </table>
+    <table id="menu_table">
+    </table>
 </div>
+<script>
+    (function(){
+        var $table = $("#menu_table");
+        var $useTrue = $('#use_true');
+        var $useFalse = $('#use_false');
+        $table.bootstrapTable({
+            url:"{:url('/MenuManage/getList')}",
+            idField:'id',
+            search:true,
+            searchOnEnterKey:false,
+            clickToSelect:true,
+            striped:true,
+            pagination:true,
+            pageSize:15,
+            toolbar:'#menu_table_btn',
+            columns:[
+                {field:'checked',title:'选择',checkbox:true},
+                {field:'name',title:'名称'},
+                {field:'pid',title:'上级菜单名称'},
+                {field:'status',title:'状态'},
+            ],
+        });
+
+        //启用操作
+        $useFalse.click(function(){
+            var selectRow = $table.bootstrapTable('getSelections');
+            if($.is_null(selectRow)){
+                return false;
+            } else {
+                var pkArr = [];
+                $.each(selectRow,function(k,v){
+                    pkArr.push(v.id);
+                });
+                $.post("{:url('/MenuManage/operateStatus')}",{pkArr:JSON.stringify(pkArr),status:2},function(result){
+
+                });
+            }
+        });
+        //停用操作
+//启用操作
+        $useTrue.click(function(){
+            var selectRow = $table.bootstrapTable('getSelections');
+            if($.is_null(selectRow)){
+                return false;
+            } else {
+                var pkArr = [];
+                $.each(selectRow,function(k,v){
+                    pkArr.push(v.id);
+                });
+                $.post("{:url('/MenuManage/operateStatus')}",{pkArr:JSON.stringify(pkArr),status:1},function(result){
+                    console.log(result);
+                });
+            }
+        });
+    })(jQuery,window,document)
+
+</script>
+
 

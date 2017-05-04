@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"E:\project\tp5\public/../application/admin\view\index\index.html";i:1493777745;s:66:"E:\project\tp5\public/../application/admin\view\layout\layout.html";i:1493799722;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"E:\project\tp5\public/../application/admin\view\index\index.html";i:1493777745;s:66:"E:\project\tp5\public/../application/admin\view\layout\layout.html";i:1493891078;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -9,9 +9,19 @@
     <meta content='text/html;charset=utf-8' http-equiv='content-type'>
     <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>bootstrap/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>bootstrap-table/dist/bootstrap-table.min.css">
     <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>css/common.css">
     <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>css/menu.css">
+
+
+    <script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="<?php echo STATIC_PATH; ?>/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo STATIC_PATH; ?>bootstrap-table/dist/bootstrap-table.min.js"></script>
+    <script src="<?php echo STATIC_PATH; ?>bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/jqUnitCookie.js"></script>
+    <script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/jq-tool.js"></script>
 </head>
+
 <body>
 <!--顶部导航条-->
 <nav class="navbar best-top-menu">
@@ -50,23 +60,26 @@
         <div class="col-sm-3 col-md-1 sidebar no-pd-lf no-pd-rt">
             <?php foreach($menuTree as $k=>$v):?>
             <ul class="nav nav-sidebar hidden pid-<?php echo $v['id']; ?>">
-                <?php foreach($v['children'] as $k1=>$v1):?>
-                <li class="active second-menu "><a href="<?php echo url($v1['url'],['menuId'=>$v1['pid']]); ?>"><?php echo $v1['name']; ?></a></li>
-                <?php endforeach; ?>
+                <?php if(isset($v['children']) && !empty($v['children'])):foreach($v['children'] as $k1=>$v1):?>
+                    <li class="active second-menu "><a href="<?php echo url($v1['url'],['menuId'=>$v1['pid']]); ?>"><?php echo $v1['name']; ?></a></li>
+                    <?php endforeach; endif;?>
             </ul>
             <?php endforeach;?>
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-2 main no-mg-lf">
-            <div data-yw="kc" class="content">
+        <div class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-2 main no-mg-lf no-pd-rt">
+            <div class="panel">
+                <div data-yw="kc" class="content">
     卡车业务
 </div>
+            </div>
+
         </div>
     </div>
 </div>
 </body>
-<script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/bootstrap.min.js"></script>
+
 <script>
+
     $('.first-menu').click(function(){
         var secondClass = $(this).data('id');
         var oldClass = $('.pid-'+secondClass).hasClass('hidden');
@@ -76,20 +89,21 @@
         }
     });
 
-
+    /**
+     * 二级菜单联动
+     */
     $(document).ready(function(){
-        alert($.cookie('menuId'));
-//        var secondClass = $('.content').data('yw');
-//        var oldClass = $('.'+secondClass).hasClass('hidden');
-//        if(oldClass){
-//            $('.second-menu').parent('ul').addClass('hidden');
-//            $('.'+secondClass).removeClass('hidden');
-//        }
-//        //展开对应三级菜单
-//        var bl = $('#second_menu_'+'<?php echo \think\Config::get('menuId'); ?>').parent('li').parent('ul').hasClass('hidden');
-//        if(bl){
-//            $('#second_menu_'+'<?php echo \think\Config::get('menuId'); ?>').parent('li').parent('ul').removeClass('hidden');
-//        }
+        var menuId = $.cookie('adminmenuId');
+        var oldClass = $('.pid-'+menuId).hasClass('hidden');
+        if(oldClass){
+            $('.second-menu').parent('ul').addClass('hidden');
+            $('.pid-'+menuId).removeClass('hidden');
+        }
+        //展开对应三级菜单
+        var bl = $('#second_menu_'+'<?php echo \think\Config::get('menuId'); ?>').parent('li').parent('ul').hasClass('hidden');
+        if(bl){
+            $('#second_menu_'+'<?php echo \think\Config::get('menuId'); ?>').parent('li').parent('ul').removeClass('hidden');
+        }
     });
 </script>
 </html>

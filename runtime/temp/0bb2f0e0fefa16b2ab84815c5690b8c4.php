@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:70:"E:\project\tp5\public/../application/admin\view\menu_manage\index.html";i:1493806077;s:66:"E:\project\tp5\public/../application/admin\view\layout\layout.html";i:1493805569;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:70:"E:\project\tp5\public/../application/admin\view\menu_manage\index.html";i:1493890956;s:66:"E:\project\tp5\public/../application/admin\view\layout\layout.html";i:1493891078;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -9,9 +9,19 @@
     <meta content='text/html;charset=utf-8' http-equiv='content-type'>
     <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>bootstrap/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>bootstrap-table/dist/bootstrap-table.min.css">
     <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>css/common.css">
     <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>css/menu.css">
+
+
+    <script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="<?php echo STATIC_PATH; ?>/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo STATIC_PATH; ?>bootstrap-table/dist/bootstrap-table.min.js"></script>
+    <script src="<?php echo STATIC_PATH; ?>bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/jqUnitCookie.js"></script>
+    <script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/jq-tool.js"></script>
 </head>
+
 <body>
 <!--顶部导航条-->
 <nav class="navbar best-top-menu">
@@ -50,34 +60,81 @@
         <div class="col-sm-3 col-md-1 sidebar no-pd-lf no-pd-rt">
             <?php foreach($menuTree as $k=>$v):?>
             <ul class="nav nav-sidebar hidden pid-<?php echo $v['id']; ?>">
-                <?php foreach($v['children'] as $k1=>$v1):?>
-                <li class="active second-menu "><a href="<?php echo url($v1['url'],['menuId'=>$v1['pid']]); ?>"><?php echo $v1['name']; ?></a></li>
-                <?php endforeach; ?>
+                <?php if(isset($v['children']) && !empty($v['children'])):foreach($v['children'] as $k1=>$v1):?>
+                    <li class="active second-menu "><a href="<?php echo url($v1['url'],['menuId'=>$v1['pid']]); ?>"><?php echo $v1['name']; ?></a></li>
+                    <?php endforeach; endif;?>
             </ul>
             <?php endforeach;?>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-2 main no-mg-lf no-pd-rt">
             <div class="panel">
-                <div class="tb-btn-div">
-    <button class="btn btn-success active">新增</button>
-    <button class="btn btn-info active">启用</button>
-    <button class="btn btn-warning active">停用</button>
+                <div id="menu_table_btn">
+    <button type="button" class="btn btn-success">新增</button>
+    <button type="button" class="btn btn-info" id="use_true">启用</button>
+    <button type="button" class="btn btn-warning" id="use_false">停用</button>
 </div>
 <div class="table-responsive">
-        <table class="table table-striped table-bordered">
-            <tbody>
-            <tr>
-                <th>序号</th>
-                <th>选择</th>
-                <th>名称</th>
-                <th>上级菜单名称</th>
-                <th>状态</th>
-            </tr>
-
-            </tbody>
-
-        </table>
+    <table id="menu_table">
+    </table>
 </div>
+<script>
+    (function(){
+        var $table = $("#menu_table");
+        var $useTrue = $('#use_true');
+        var $useFalse = $('#use_false');
+        $table.bootstrapTable({
+            url:"<?php echo url('/MenuManage/getList'); ?>",
+            idField:'id',
+            search:true,
+            searchOnEnterKey:false,
+            clickToSelect:true,
+            striped:true,
+            pagination:true,
+            pageSize:15,
+            toolbar:'#menu_table_btn',
+            columns:[
+                {field:'checked',title:'选择',checkbox:true},
+                {field:'name',title:'名称'},
+                {field:'pid',title:'上级菜单名称'},
+                {field:'status',title:'状态'},
+            ],
+        });
+
+        //启用操作
+        $useFalse.click(function(){
+            var selectRow = $table.bootstrapTable('getSelections');
+            if($.is_null(selectRow)){
+                return false;
+            } else {
+                var pkArr = [];
+                $.each(selectRow,function(k,v){
+                    pkArr.push(v.id);
+                });
+                $.post("<?php echo url('/MenuManage/operateStatus'); ?>",{pkArr:JSON.stringify(pkArr),status:2},function(result){
+
+                });
+            }
+        });
+        //停用操作
+//启用操作
+        $useTrue.click(function(){
+            var selectRow = $table.bootstrapTable('getSelections');
+            if($.is_null(selectRow)){
+                return false;
+            } else {
+                var pkArr = [];
+                $.each(selectRow,function(k,v){
+                    pkArr.push(v.id);
+                });
+                $.post("<?php echo url('/MenuManage/operateStatus'); ?>",{pkArr:JSON.stringify(pkArr),status:1},function(result){
+                    console.log(result);
+                });
+            }
+        });
+    })(jQuery,window,document)
+
+</script>
+
 
 
             </div>
@@ -86,10 +143,9 @@
     </div>
 </div>
 </body>
-<script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/bootstrap.min.js"></script>
-<script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/jqUnitCookie.js"></script>
+
 <script>
+
     $('.first-menu').click(function(){
         var secondClass = $(this).data('id');
         var oldClass = $('.pid-'+secondClass).hasClass('hidden');
