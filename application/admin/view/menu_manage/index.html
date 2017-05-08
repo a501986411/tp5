@@ -1,5 +1,5 @@
 <div id="menu_table_btn">
-    <button type="button" class="btn btn-success">新增</button>
+    <button type="button" class="btn btn-success" id="add_menu">新增</button>
     <button type="button" class="btn btn-info" id="use_true">启用</button>
     <button type="button" class="btn btn-warning" id="use_false">停用</button>
 </div>
@@ -10,6 +10,7 @@
 <script>
     (function(){
         var $table = $("#menu_table");
+        var $addMenu = $('#add_menu');
         var $useTrue = $('#use_true');
         var $useFalse = $('#use_false');
         $table.bootstrapTable({
@@ -29,8 +30,12 @@
                 {field:'status',title:'状态'},
             ],
         });
+        //新增操作
+        $addMenu.click(function(){
+            console.log(BootstrapDialog.getModal());
+        });
 
-        //启用操作
+        //停用操作
         $useFalse.click(function(){
             var selectRow = $table.bootstrapTable('getSelections');
             if($.is_null(selectRow)){
@@ -42,11 +47,24 @@
                 });
                 $.post("{:url('/MenuManage/operateStatus')}",{pkArr:JSON.stringify(pkArr),status:2},function(result){
 
+                    if(result.success){
+                        $table.bootstrapTable('refresh',true);
+                        BootstrapDialog.alert({
+                            title:'提示',
+                            message:result.msg,
+                            type:BootstrapDialog.TYPE_SUCCESS,
+                        });
+                    } else {
+                        BootstrapDialog.alert({
+                            title:'提示',
+                            message:result.msg,
+                            type:BootstrapDialog.TYPE_WARNING,
+                        });
+                    }
                 });
             }
         });
         //停用操作
-//启用操作
         $useTrue.click(function(){
             var selectRow = $table.bootstrapTable('getSelections');
             if($.is_null(selectRow)){
@@ -57,7 +75,20 @@
                     pkArr.push(v.id);
                 });
                 $.post("{:url('/MenuManage/operateStatus')}",{pkArr:JSON.stringify(pkArr),status:1},function(result){
-                    console.log(result);
+                    if(result.success){
+                        $table.bootstrapTable('refresh',true);
+                        BootstrapDialog.alert({
+                            title:'提示',
+                            message:result.msg,
+                            type:BootstrapDialog.TYPE_SUCCESS,
+                        });
+                    } else {
+                        BootstrapDialog.alert({
+                            title:'提示',
+                            message:result.msg,
+                            type:BootstrapDialog.TYPE_DANGER,
+                        });
+                    }
                 });
             }
         });

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:70:"E:\project\tp5\public/../application/admin\view\menu_manage\index.html";i:1493890956;s:66:"E:\project\tp5\public/../application/admin\view\layout\layout.html";i:1493891078;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:70:"E:\project\tp5\public/../application/admin\view\menu_manage\index.html";i:1494237284;s:66:"E:\project\tp5\public/../application/admin\view\layout\layout.html";i:1494236173;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>bootstrap/css/bootstrap-theme.css">
     <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>bootstrap-table/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>css/bootstrap-dialog.min.css">
     <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>css/common.css">
     <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>css/menu.css">
 
@@ -20,6 +21,7 @@
     <script src="<?php echo STATIC_PATH; ?>bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
     <script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/jqUnitCookie.js"></script>
     <script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/jq-tool.js"></script>
+    <script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/bootstrap-dialog.min.js"></script>
 </head>
 
 <body>
@@ -69,7 +71,7 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-2 main no-mg-lf no-pd-rt">
             <div class="panel">
                 <div id="menu_table_btn">
-    <button type="button" class="btn btn-success">新增</button>
+    <button type="button" class="btn btn-success" id="add_menu">新增</button>
     <button type="button" class="btn btn-info" id="use_true">启用</button>
     <button type="button" class="btn btn-warning" id="use_false">停用</button>
 </div>
@@ -80,6 +82,7 @@
 <script>
     (function(){
         var $table = $("#menu_table");
+        var $addMenu = $('#add_menu');
         var $useTrue = $('#use_true');
         var $useFalse = $('#use_false');
         $table.bootstrapTable({
@@ -99,8 +102,12 @@
                 {field:'status',title:'状态'},
             ],
         });
+        //新增操作
+        $addMenu.click(function(){
+            console.log(BootstrapDialog.getModal());
+        });
 
-        //启用操作
+        //停用操作
         $useFalse.click(function(){
             var selectRow = $table.bootstrapTable('getSelections');
             if($.is_null(selectRow)){
@@ -112,11 +119,24 @@
                 });
                 $.post("<?php echo url('/MenuManage/operateStatus'); ?>",{pkArr:JSON.stringify(pkArr),status:2},function(result){
 
+                    if(result.success){
+                        $table.bootstrapTable('refresh',true);
+                        BootstrapDialog.alert({
+                            title:'提示',
+                            message:result.msg,
+                            type:BootstrapDialog.TYPE_SUCCESS,
+                        });
+                    } else {
+                        BootstrapDialog.alert({
+                            title:'提示',
+                            message:result.msg,
+                            type:BootstrapDialog.TYPE_WARNING,
+                        });
+                    }
                 });
             }
         });
         //停用操作
-//启用操作
         $useTrue.click(function(){
             var selectRow = $table.bootstrapTable('getSelections');
             if($.is_null(selectRow)){
@@ -127,7 +147,20 @@
                     pkArr.push(v.id);
                 });
                 $.post("<?php echo url('/MenuManage/operateStatus'); ?>",{pkArr:JSON.stringify(pkArr),status:1},function(result){
-                    console.log(result);
+                    if(result.success){
+                        $table.bootstrapTable('refresh',true);
+                        BootstrapDialog.alert({
+                            title:'提示',
+                            message:result.msg,
+                            type:BootstrapDialog.TYPE_SUCCESS,
+                        });
+                    } else {
+                        BootstrapDialog.alert({
+                            title:'提示',
+                            message:result.msg,
+                            type:BootstrapDialog.TYPE_DANGER,
+                        });
+                    }
                 });
             }
         });

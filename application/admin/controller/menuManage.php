@@ -7,8 +7,8 @@
  */
 namespace app\admin\controller;
 use app\admin\Model\AdminMenu;
+use think\Db;
 use think\image\Exception;
-use think\Request;
 use \app\admin\logic\AdminMenuLogic;
 
 class MenuManage extends App
@@ -41,17 +41,30 @@ class MenuManage extends App
 		return $list;
 	}
 
+	/**
+	 * 改变财当状态
+	 * @access public
+	 * @return void
+	 * @author knight
+	 */
 	public function operateStatus()
 	{
 		if(input('?post.pkArr') && input('?post.status') ){
 			$pkArr = json_decode(input('pkArr'),true);
 			$status = input('status');
+			Db::startTrans();
 			try{
-				$logic = new AdminMenuLogic();
+				$logic = new AdminMenuLogic(new AdminMenu());
 				foreach($pkArr as $v){
-					$logic->changeStatus($v,$status);
+					if(false === $logic->changeStatus($v,$status)){
+						throw new Exception(lang('error server'));
+					}
 				}
+				Db::commit();
+				return ['success'=>true,'msg'=>lang('success options')];
 			}catch (Exception $e){
+				Db::rollback();
+				return ['success'=>false,'msg'=>$e->getMessage()];
 			}
 		} else {
 			throw new Exception(lang('error param'));
