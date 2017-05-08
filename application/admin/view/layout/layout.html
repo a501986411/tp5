@@ -36,7 +36,7 @@
 </nav>
 <?php
     use think\Db;
-    use \PhpTree;
+    use al\PhpTree;
     $menuList = Db::query('select * from admin_menu where status=1');
     $tree = new PhpTree();
     $menuTree = $tree->makeTree($menuList);
@@ -77,6 +77,7 @@
         </div>
     </div>
 </div>
+
 </body>
 
 <script>

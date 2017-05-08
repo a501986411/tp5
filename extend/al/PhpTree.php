@@ -1,7 +1,9 @@
 <?php
+namespace al;
 	/**
 	 * @name PHPTree
 	 */
+
 	class PhpTree{
 
 		protected static $config = array(

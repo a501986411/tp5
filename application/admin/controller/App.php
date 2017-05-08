@@ -7,7 +7,6 @@
 	 */
 	namespace app\admin\controller;
 	use think\Request;
-
 	class App
 	{
 		private $menuId;
