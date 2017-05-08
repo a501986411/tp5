@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:70:"E:\project\tp5\public/../application/admin\view\menu_manage\index.html";i:1494237284;s:66:"E:\project\tp5\public/../application/admin\view\layout\layout.html";i:1494236173;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:70:"E:\project\tp5\public/../application/admin\view\menu_manage\index.html";i:1494237797;s:66:"E:\project\tp5\public/../application/admin\view\layout\layout.html";i:1494236173;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -104,7 +104,11 @@
         });
         //新增操作
         $addMenu.click(function(){
-            console.log(BootstrapDialog.getModal());
+            BootstrapDialog.show({
+                getModal:function(){
+                    
+                }
+            })
         });
 
         //停用操作

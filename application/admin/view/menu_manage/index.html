@@ -32,7 +32,6 @@
         });
         //新增操作
         $addMenu.click(function(){
-            console.log(BootstrapDialog.getModal());
         });
 
         //停用操作
@@ -58,7 +57,7 @@
                         BootstrapDialog.alert({
                             title:'提示',
                             message:result.msg,
-                            type:BootstrapDialog.TYPE_WARNING,
+                            type:BootstrapDialog.TYPE_DANGER,
                         });
                     }
                 });
