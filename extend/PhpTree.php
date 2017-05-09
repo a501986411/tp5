@@ -3,7 +3,6 @@
 	 * @name PHPTree
 	 */
 	class PhpTree{
-
 		protected static $config = array(
 			/* 主键 */
 			'primary_key' 	=> 'id',

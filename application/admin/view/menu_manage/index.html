@@ -1,5 +1,5 @@
 <div id="menu_table_btn">
-    <button type="button" class="btn btn-success" id="add_menu">新增</button>
+    <button type="button" class="btn btn-success"  id="add_menu" >新增</button>
     <button type="button" class="btn btn-info" id="use_true">启用</button>
     <button type="button" class="btn btn-warning" id="use_false">停用</button>
 </div>
@@ -7,12 +7,32 @@
     <table id="menu_table">
     </table>
 </div>
+
+<div class="modal-body hidden">
+    <form method="post" id="menuFm" class="form-horizontal">
+        <div class="form-group">
+            <label for="name"  class="col-sm-5 control-label">菜单名称:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control" id='name' placeholder="名称">
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label for="sort" class="col-sm-5 control-label">排序:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control" id='sort' placeholder="排序">
+            </div>
+        </div>
+    </form>
+</div>
+
 <script>
     (function(){
         var $table = $("#menu_table");
         var $addMenu = $('#add_menu');
         var $useTrue = $('#use_true');
         var $useFalse = $('#use_false');
+        var $addMenuDlg = $('#add_menu_dlg');
         $table.bootstrapTable({
             url:"{:url('/MenuManage/getList')}",
             idField:'id',
@@ -32,6 +52,10 @@
         });
         //新增操作
         $addMenu.click(function(){
+            BootstrapDialog.show({
+                title:'新增菜单',
+                message:$('.modal-body').html()
+            });
         });
 
         //停用操作
@@ -45,9 +69,8 @@
                     pkArr.push(v.id);
                 });
                 $.post("{:url('/MenuManage/operateStatus')}",{pkArr:JSON.stringify(pkArr),status:2},function(result){
-
                     if(result.success){
-                        $table.bootstrapTable('refresh',true);
+                        $table.bootstrapTable('refresh');
                         BootstrapDialog.alert({
                             title:'提示',
                             message:result.msg,
@@ -75,7 +98,7 @@
                 });
                 $.post("{:url('/MenuManage/operateStatus')}",{pkArr:JSON.stringify(pkArr),status:1},function(result){
                     if(result.success){
-                        $table.bootstrapTable('refresh',true);
+                        $table.bootstrapTable('refresh');
                         BootstrapDialog.alert({
                             title:'提示',
                             message:result.msg,
