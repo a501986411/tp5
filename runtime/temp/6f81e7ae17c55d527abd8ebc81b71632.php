@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"E:\project\tp5\public/../application/admin\view\index\index.html";i:1493777745;s:66:"E:\project\tp5\public/../application/admin\view\layout\layout.html";i:1493891078;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"E:\project\tp5\public/../application/admin\view\index\index.html";i:1493777745;s:66:"E:\project\tp5\public/../application/admin\view\layout\layout.html";i:1494236173;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>bootstrap/css/bootstrap-theme.css">
     <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>bootstrap-table/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>css/bootstrap-dialog.min.css">
     <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>css/common.css">
     <link rel="stylesheet" href="<?php echo STATIC_PATH; ?>css/menu.css">
 
@@ -20,6 +21,7 @@
     <script src="<?php echo STATIC_PATH; ?>bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
     <script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/jqUnitCookie.js"></script>
     <script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/jq-tool.js"></script>
+    <script type="text/javascript" src="<?php echo STATIC_PATH; ?>js/bootstrap-dialog.min.js"></script>
 </head>
 
 <body>
