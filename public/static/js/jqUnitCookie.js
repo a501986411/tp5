@@ -16,7 +16,7 @@
 
             }
             if (key == undefined && value == undefined) { //获取所有cookie信息
-
+                return arr;
             }
             if (key != undefined && value == undefined) { //获取cookie
                 if(cookieArr){

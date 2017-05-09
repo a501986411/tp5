@@ -7,32 +7,14 @@
     <table id="menu_table">
     </table>
 </div>
-
-<div class="modal-body hidden">
-    <form method="post" id="menuFm" class="form-horizontal">
-        <div class="form-group">
-            <label for="name"  class="col-sm-5 control-label">菜单名称:</label>
-            <div class="col-sm-7">
-                <input type="text" class="form-control" id='name' placeholder="名称">
-            </div>
-
-        </div>
-        <div class="form-group">
-            <label for="sort" class="col-sm-5 control-label">排序:</label>
-            <div class="col-sm-7">
-                <input type="text" class="form-control" id='sort' placeholder="排序">
-            </div>
-        </div>
-    </form>
-</div>
-
+{include file='menu_manage/form'/}
 <script>
     (function(){
         var $table = $("#menu_table");
         var $addMenu = $('#add_menu');
         var $useTrue = $('#use_true');
         var $useFalse = $('#use_false');
-        var $addMenuDlg = $('#add_menu_dlg');
+        var $addMenuDlg = $('#menu_info_dlg');
         $table.bootstrapTable({
             url:"{:url('/MenuManage/getList')}",
             idField:'id',
@@ -54,7 +36,40 @@
         $addMenu.click(function(){
             BootstrapDialog.show({
                 title:'新增菜单',
-                message:$('.modal-body').html()
+                message:function(){
+                    var msg = $addMenuDlg.html();
+                    $addMenuDlg.remove();
+                    return msg;
+                },
+                nl2br:false,
+                data:'',
+                buttons:[{
+                    id:'btn-ok',
+                    label:'保存',
+                    cssClass:'btn-primary',
+                    action:function(dialogRef){
+                        var $menuInfoFm = $('#menu_info_fm');
+                        $menuInfoFm.formSubmit({
+                            url:"{:url('save')}",
+                            success:function(result){
+                                if(result.success){
+                                    $.dialogMsg({message:result.msg,callBack:function(){
+                                        dialogRef.close();
+                                        $table.bootstrapTable('refresh');
+                                    }});
+                                }
+                            }
+                        })
+                    },
+                },
+                {
+                    id:'btn-false',
+                    label:'取消',
+                    cssClass:'btn-default',
+                    action:function(dialogRef){
+                        dialogRef.close();
+                    }
+                },]
             });
         });
 
@@ -71,18 +86,8 @@
                 $.post("{:url('/MenuManage/operateStatus')}",{pkArr:JSON.stringify(pkArr),status:2},function(result){
                     if(result.success){
                         $table.bootstrapTable('refresh');
-                        BootstrapDialog.alert({
-                            title:'提示',
-                            message:result.msg,
-                            type:BootstrapDialog.TYPE_SUCCESS,
-                        });
-                    } else {
-                        BootstrapDialog.alert({
-                            title:'提示',
-                            message:result.msg,
-                            type:BootstrapDialog.TYPE_DANGER,
-                        });
                     }
+                    $.dialogMsg({message:result.msg});
                 });
             }
         });
@@ -99,18 +104,8 @@
                 $.post("{:url('/MenuManage/operateStatus')}",{pkArr:JSON.stringify(pkArr),status:1},function(result){
                     if(result.success){
                         $table.bootstrapTable('refresh');
-                        BootstrapDialog.alert({
-                            title:'提示',
-                            message:result.msg,
-                            type:BootstrapDialog.TYPE_SUCCESS,
-                        });
-                    } else {
-                        BootstrapDialog.alert({
-                            title:'提示',
-                            message:result.msg,
-                            type:BootstrapDialog.TYPE_DANGER,
-                        });
                     }
+                    $.dialogMsg({message:result.msg});
                 });
             }
         });

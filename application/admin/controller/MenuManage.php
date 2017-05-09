@@ -26,7 +26,9 @@ class MenuManage extends App
 	 */
 	public function index()
 	{
-		return view();
+		$logic = new AdminMenuLogic(new AdminMenu());
+		$list = $logic->getMenuSelect();
+		return view('',['pMenu'=>$list]);
 	}
 
 	/**
@@ -69,5 +71,12 @@ class MenuManage extends App
 		} else {
 			throw new Exception(lang('error param'));
 		}
+	}
+
+
+	public function save()
+	{
+		
+		return ['success'=>true,'msg'=>lang('success options')];
 	}
 }
