@@ -12,14 +12,28 @@
 	{
 		const STATUS_ONE = 1; //启用
 		const STATUS_TWO = 2; //停用
+        const IS_UPDATE_STATUS_TRUE = 1; //支持启停用操作
+        const IS_UPDATE_STATUS_FALSE = 0;//不支持启停用操作
 		protected $model;
 		public function __construct()
 		{
 			parent::__construct();
 		}
 
+        /**
+         * 坚持是否支持启用停用操作
+         * @param $id
+         * @return bool
+         */
+       public function checkIsUpdateStatus($id){
+           $menu = $this->model->find($id);
+           if($menu->is_update_status == self::IS_UPDATE_STATUS_FALSE){
+               return false;
+           }
+           return true;
+       }
 
-		/**
+        /**
 		 * 修改菜单状态
 		 * @access public
 		 * @param $id

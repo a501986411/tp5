@@ -7,12 +7,14 @@
 	 */
 	namespace app\admin\controller;
 	use think\Request;
-	class App
+    use think\Controller;
+	class App extends Controller
 	{
 		private $menuId;
 
 		public function __construct()
 		{
+		    parent::__construct();
 			if(Request::instance()->has('menuId')){
 				$this->menuId = input('param.menuId');
 				if($this->menuId){

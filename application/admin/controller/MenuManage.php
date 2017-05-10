@@ -59,6 +59,9 @@ class MenuManage extends App
 			try{
 				$logic = new AdminMenuLogic(new AdminMenu());
 				foreach($pkArr as $v){
+				    if(!$logic->checkIsUpdateStatus($v)){ //检查是否支持启停用操作
+                        throw new Exception(lang('no options'));
+                    }
 					if(false === $logic->changeStatus($v,$status)){
 						throw new Exception(lang('error server'));
 					}
@@ -85,6 +88,14 @@ class MenuManage extends App
 	{
 		if(Request::instance()->isPost()){
 			$data = input();
+			if($data['id']){
+                $result = $this->validate($data,'AdminMenuCheck.edit');
+            } else {
+                $result = $this->validate($data,'AdminMenuCheck');
+            }
+			if($result !== true){
+                return ['success'=>false,'msg'=>$result];
+            }
 			$logic = new AdminMenuLogic(new AdminMenu());
 			$result = $logic->saveData($data);
 			if($result){

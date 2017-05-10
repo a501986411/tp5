@@ -1,4 +1,5 @@
 <?php
+    namespace org;
 	/**
 	 * @name PHPTree
 	 */

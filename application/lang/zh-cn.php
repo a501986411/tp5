@@ -10,4 +10,5 @@ return [
 	'error param'      =>'方法参数错误',
 	'error server'      =>'服务器错误',
 	'success options'   =>'操作成功',
+	'no options'   =>'所选数据不支持该操作',
 ];
