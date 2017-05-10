@@ -10,6 +10,7 @@ use app\admin\Model\AdminMenu;
 use think\Db;
 use think\image\Exception;
 use \app\admin\logic\AdminMenuLogic;
+use think\Request;
 
 class MenuManage extends App
 {
@@ -38,13 +39,13 @@ class MenuManage extends App
 	 * @author knight
 	 */
 	public function getList(){
-		$adminMenu = new AdminMenu(['id'=>'desc']);
-		$list = $adminMenu->select();
+		$logic = new AdminMenuLogic(new AdminMenu());
+		$list = $logic->getList();
 		return $list;
 	}
 
 	/**
-	 * 改变财当状态
+	 * 改变菜单状态
 	 * @access public
 	 * @return void
 	 * @author knight
@@ -74,9 +75,25 @@ class MenuManage extends App
 	}
 
 
+	/**
+	 * 保存菜单
+	 * @access public
+	 * @return array
+	 * @author knight
+	 */
 	public function save()
 	{
-		
-		return ['success'=>true,'msg'=>lang('success options')];
+		if(Request::instance()->isPost()){
+			$data = input();
+			$logic = new AdminMenuLogic(new AdminMenu());
+			$result = $logic->saveData($data);
+			if($result){
+				return ['success'=>true,'msg'=>lang('success options')];
+			}
+			return ['success'=>false,'msg'=>lang('error server')];
+		} else {
+			throw new Exception(lang('error param'));
+		}
+
 	}
 }

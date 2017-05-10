@@ -2,6 +2,7 @@
    namespace app\admin\logic;
    use app\admin\logic\MenuLogic;
    use app\admin\model\AdminMenu;
+   use think\Validate;
 
    /**
 	 * 菜单处理逻辑类
@@ -30,5 +31,31 @@
 					->where('pid',0)
 					->select();
 			return $list;
+		}
+
+		public function getList()
+		{
+			$list = $this->model->select();
+			foreach($list as $k=>&$v){
+				 $v->status_name = $v->status_name;
+				 $v->pid_name = $v->pid_name;
+			}
+			return $list;
+		}
+
+		/**
+		 * 修改或者保存菜单
+		 * @access public
+		 * @param array $data
+		 * @return bool
+		 * @author knight
+		 */
+		public function saveData($data)
+		{
+			$result = $this->model->allowField(true)->isUpdate($data['id']? true : false)->save($data);//保存
+			if($result === false){
+				return false;
+			}
+			return true;
 		}
 	}

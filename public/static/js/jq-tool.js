@@ -13,7 +13,7 @@
                 title:'提示',
                 message:'',
                 autoClose:true,
-                timeClose:1000,
+                timeClose:1500,
                 data:{},
                 callBack:function(){
                 }
@@ -32,6 +32,9 @@
                     dlg.close();
                 },setting.timeClose);
             }
+        },
+        reload:function(){
+            window.location.reload();
         }
     });
 
@@ -69,4 +72,27 @@
             },
         });
     };
+
+    /**
+     *  form表单加载数据
+     * @param data
+     */
+    $.fn.formLoad = function(data){
+        $form = this;
+        //input框
+        $.each(data,function(k,v){
+            var $obj = $form.find("[name="+k+"]");
+            $obj.each(function(k1,v1){
+                if($obj.prop('type') == 'radio'){
+                    if($(this).val() == v){
+                        $(this).prop('checked','checked');
+                        return false;
+                    }
+                } else {
+                    $(this).val(v);
+                    return false;
+                }
+            });
+        });
+    }
 })(jQuery,window,document);

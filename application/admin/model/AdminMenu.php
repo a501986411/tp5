@@ -13,23 +13,53 @@ class AdminMenu extends Model
 {
 	protected $_status_one = ['id' => 1, 'name' => '启用'];
 	protected $_status_two = ['id' => 2, 'name' => '停用'];
-	public $order = ['id'=>'asc'];
-	protected function initialize($order=['id'=>'asc'])
+	protected $auto = ['path'];
+	protected $insert = ['is_update_status'];
+	protected function initialize()
 	{
-		parent::initialize($order);
+		parent::initialize();
 	}
 
-
+	/**
+	 * 设置是否允许启停用操作
+	 * @access public
+	 * @return void
+	 * @author knight
+	 */
+	protected function setIsUpdateStatusAttr()
+	{
+		if(!empty($this->pid)){
+			$menu = $this->find($this->getAttr('pid'));
+			return $menu->is_update_status;
+		}
+		return 1;
+	}
 
 	/**
-	 * 菜单状态获取器 自动调用
+	 * 设置路径
+	 * 规则 是上级的path-pid
+	 * @access public
+	 * @return void
+	 * @author knight
+	 */
+	public function setPathAttr()
+	{
+		if(!empty($this->pid)){
+			$menu = $this->find($this->getAttr('pid'));
+			return !empty($menu->path) ? $menu->path."-".$menu->id : $menu->id;
+		}
+		return '';
+	}
+
+	/**
+	 * 菜单状态获取器 查询时不会自动调用
 	 * @access public
 	 * @param $value
 	 * @return string
 	 * @author knight
 	 */
-	public function getStatusAttr($value){
-		switch($value){
+	public function getStatusNameAttr($value,$data){
+		switch($data['status']){
 			case $this->_status_one['id']:
 				return $this->_status_one['name'];
 			break;
@@ -42,16 +72,16 @@ class AdminMenu extends Model
 	}
 
 	/**
-	 * 上级菜单名称获取器 自动调用
+	 * 上级菜单名称获取器 查询时不会自动调用
 	 * @access public
 	 * @param $value
 	 * @return mixed|string
 	 * @author knight
 	 */
-	public function getPidAttr($value)
+	public function getPidNameAttr($value,$data)
 	{
-		if($value){
-			$adminMenu = $this->field('name')->find($value);
+		if($data['pid']){
+			$adminMenu = $this->field('name')->find($data['pid']);
 			if($adminMenu){
 				return $adminMenu->getAttr('name');
 			}
