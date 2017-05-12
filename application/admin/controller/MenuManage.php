@@ -18,7 +18,10 @@ class MenuManage extends App
 	public function __construct()
 	{
 		parent::__construct();
+
 	}
+
+
 	/**
 	 * 菜单管理列表
 	 * @access public

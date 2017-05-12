@@ -52,4 +52,18 @@
 		{
 			return password_verify($password,$passwordHash);
 		}
+
+        /**
+         * 检查cookie确认是否存在用户信息
+         * @return bool
+         */
+        public function checkLoginStatus()
+        {
+            $user = cookie('user');
+            if(empty($user)){
+                return false;
+            } else {
+                return true;
+            }
+        }
 	}

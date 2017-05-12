@@ -30,7 +30,7 @@
     <div class="container-fluid">
         <div class="navbar-collapse collapse extend-width no-pd-lf no-pd-rt">
             <ul class="nav navbar-nav fr menu-font-color">
-                <li><a href="" class="menu-font-color">安全退出</a></li>
+                <li><a href="{:url('/Login/loginOut')}" class="menu-font-color">安全退出</a></li>
             </ul>
         </div>
     </div>
@@ -101,11 +101,6 @@
         if(oldClass){
             $('.second-menu').parent('ul').addClass('hidden');
             $('.pid-'+menuId).removeClass('hidden');
-        }
-        //展开对应三级菜单
-        var bl = $('#second_menu_'+'{$Think.config.menuId}').parent('li').parent('ul').hasClass('hidden');
-        if(bl){
-            $('#second_menu_'+'{$Think.config.menuId}').parent('li').parent('ul').removeClass('hidden');
         }
     });
 </script>

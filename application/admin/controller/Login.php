@@ -10,12 +10,13 @@
 	namespace app\admin\controller;
 	use app\admin\logic\LoginLogic;
 	use app\admin\model\AdminUser;
-	use think\Controller;
-	use think\Request;
+    use think\Controller;
+    use think\Request;
 
 	class Login extends Controller
 	{
-		/**
+
+        /**
 		 * 登录页面
 		 * @access public
 		 * @return \think\response\View
@@ -35,9 +36,19 @@
 			} else{
 				//登录页面 不需要模板布局
 				$this->view->engine->layout(false);
+
 				return view();
 			}
 
 		}
+
+        /**
+         * 退出操作
+         */
+		public function loginOut()
+        {
+            cookie(null,'admin_');
+            $this->success('退出成功！',url('/Login/index'));
+        }
 
 	}
