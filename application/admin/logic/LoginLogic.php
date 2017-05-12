@@ -22,7 +22,6 @@
 
 
 		/**
-		 *
 		 * @access public
 		 * @param $username
 		 * @param $password
