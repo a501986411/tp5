@@ -96,7 +96,7 @@
      * 二级菜单联动
      */
     $(document).ready(function(){
-        var menuId = $.cookie('adminmenuId');
+        var menuId = $.cookie('admin_menuId');
         var oldClass = $('.pid-'+menuId).hasClass('hidden');
         if(oldClass){
             $('.second-menu').parent('ul').addClass('hidden');

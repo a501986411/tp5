@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-05-10 18:06:07
+Date: 2017-05-12 17:37:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -42,3 +42,22 @@ INSERT INTO `admin_menu` VALUES ('5', '1', '权限管理', '/auth/index', '2', '
 INSERT INTO `admin_menu` VALUES ('6', '3', '标签管理', '/tag/index', '2', '2', '3', '1');
 INSERT INTO `admin_menu` VALUES ('7', '3', '作者管理', '/author/index', '3', '2', '3', '1');
 INSERT INTO `admin_menu` VALUES ('8', '0', '评论管理', '', '3', '2', '', '1');
+
+-- ----------------------------
+-- Table structure for admin_user
+-- ----------------------------
+DROP TABLE IF EXISTS `admin_user`;
+CREATE TABLE `admin_user` (
+  `id` int(1) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(60) NOT NULL DEFAULT '' COMMENT '用户名',
+  `password_hash` varchar(255) NOT NULL DEFAULT '' COMMENT '密码hash加密字符串',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否启用1：启用，0：停用',
+  `last_login_time` int(11) NOT NULL DEFAULT '0' COMMENT '最后一次登录时间',
+  `last_login_ip` varchar(20) NOT NULL DEFAULT '' COMMENT '最后一次登录IP',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='管理后台用户基础信息表';
+
+-- ----------------------------
+-- Records of admin_user
+-- ----------------------------
+INSERT INTO `admin_user` VALUES ('1', 'chenhailong', '$2y$10$jEF0sQSPOwQtQFJDh05Hg.w8soTr0HxsujfLOCghMpzjeVJ24Au66', '1', '0', '');

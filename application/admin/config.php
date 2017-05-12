@@ -30,13 +30,13 @@
 		// +----------------------------------------------------------------------
 		'cookie'                 => [
 			// cookie 名称前缀
-			'prefix'    => 'admin',
+			'prefix'    => 'admin_',
 			// cookie 保存时间
 			'expire'    => 24*60*60,
 			// cookie 保存路径
 			'path'      => '/',
 			// cookie 有效域名
-			'domain'    => '.tp5.com',
+			'domain'    => '',
 			//  cookie 启用安全传输
 			'secure'    => false,
 			// httponly设置

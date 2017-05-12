@@ -6,6 +6,7 @@
 
         public function index()
         {
+            $this->redirect(url('/Login/index'));
             return view();
         }
 
