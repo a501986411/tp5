@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-05-12 22:52:33
+Date: 2017-05-14 12:44:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,21 +29,22 @@ CREATE TABLE `admin_menu` (
   `path` varchar(20) NOT NULL DEFAULT '' COMMENT '上级所有节点路径如（1-3-4）',
   `is_update_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否支持启用或者停用操作1：支持，0：不支持',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 COMMENT='菜单数据表';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COMMENT='菜单数据表';
 
 -- ----------------------------
 -- Records of admin_menu
 -- ----------------------------
 INSERT INTO `admin_menu` VALUES ('1', '0', '系统设置', '', '0', '1', '', '0');
 INSERT INTO `admin_menu` VALUES ('2', '1', '菜单管理', '/MenuManage/index', '1', '1', '1', '0');
-INSERT INTO `admin_menu` VALUES ('3', '0', '文章管理', '', '0', '1', '', '1');
-INSERT INTO `admin_menu` VALUES ('4', '3', '类型管理', '', '0', '1', '3', '1');
+INSERT INTO `admin_menu` VALUES ('3', '0', '文章管理', '', '0', '2', '', '1');
+INSERT INTO `admin_menu` VALUES ('4', '3', '类型管理', '', '0', '2', '3', '1');
 INSERT INTO `admin_menu` VALUES ('5', '1', '权限管理', '/auth/index', '2', '2', '1', '0');
 INSERT INTO `admin_menu` VALUES ('6', '3', '标签管理', '/tag/index', '2', '2', '3', '1');
 INSERT INTO `admin_menu` VALUES ('7', '3', '作者管理', '/author/index', '3', '2', '3', '1');
 INSERT INTO `admin_menu` VALUES ('8', '0', '评论管理', '', '3', '2', '', '1');
 INSERT INTO `admin_menu` VALUES ('9', '0', 'ROS管理', '', '3', '1', '', '1');
 INSERT INTO `admin_menu` VALUES ('10', '9', '服务器管理', '/RouteService/index', '1', '1', '9', '1');
+INSERT INTO `admin_menu` VALUES ('11', '9', 'ROS状态列表', '/RouteService/rosStatusList', '2', '1', '9', '1');
 
 -- ----------------------------
 -- Table structure for admin_user
@@ -63,3 +64,25 @@ CREATE TABLE `admin_user` (
 -- Records of admin_user
 -- ----------------------------
 INSERT INTO `admin_user` VALUES ('1', 'chenhailong', '$2y$10$jEF0sQSPOwQtQFJDh05Hg.w8soTr0HxsujfLOCghMpzjeVJ24Au66', '1', '0', '');
+
+-- ----------------------------
+-- Table structure for route_service
+-- ----------------------------
+DROP TABLE IF EXISTS `route_service`;
+CREATE TABLE `route_service` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) NOT NULL DEFAULT '' COMMENT '服务器名称',
+  `domain` varchar(40) NOT NULL DEFAULT '' COMMENT '服务器域名',
+  `ip` varchar(10) NOT NULL DEFAULT '' COMMENT '服务器IP',
+  `port` int(5) NOT NULL DEFAULT '8728' COMMENT '服务器连接端口',
+  `username` varchar(40) NOT NULL DEFAULT '' COMMENT '服务器登录用户名',
+  `password` varchar(50) NOT NULL DEFAULT '' COMMENT '服务器登陆密码',
+  `remark` varchar(400) NOT NULL DEFAULT '' COMMENT '备注',
+  `create_time` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(11) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='rout os 服务器连接信息';
+
+-- ----------------------------
+-- Records of route_service
+-- ----------------------------
