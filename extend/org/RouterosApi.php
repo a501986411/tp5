@@ -18,17 +18,17 @@ namespace org;
 
 class RouterosApi
 {
-    var $debug     = false; //  Show debug information
-    var $connected = false; //  Connection state
-    var $port      = 8728;  //  Port to connect to (default 8729 for ssl)
-    var $ssl       = false; //  Connect using SSL (must enable api-ssl in IP/Services)
-    var $timeout   = 3;     //  Connection attempt timeout and data read timeout
-    var $attempts  = 5;     //  Connection attempt count
-    var $delay     = 3;     //  Delay between connection attempts in seconds
+    public $debug     = false; //  是否显示调试信息
+    public $connected = false; //  连接状态
+    public $port      = 8728;  //  服务器端口
+    public $ssl       = false; //  使用SSL连接（必须在IP /服务中启用API SSL）
+    public $timeout   = 3;     //  连接尝试超时和数据读取超时时间（秒）
+    public $attempts  = 1;     //  失败重连次数
+    public $delay     = 1;     //  重试连接间隔时间（s）
 
-    var $socket;            //  Variable for storing socket resource
-    var $error_no;          //  Variable for storing connection error number, if any
-    var $error_str;         //  Variable for storing connection error text, if any
+    public $socket;            //  用于存储套接字资源的变量
+    public $error_no;          //  Variable for storing connection error number, if any
+    public $error_str;         //  Variable for storing connection error text, if any
 
     /* Check, can be var used in foreach  */
     public function isIterable($var)

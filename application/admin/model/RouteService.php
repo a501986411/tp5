@@ -18,4 +18,5 @@ class RouteService extends Model
     {
         parent::initialize();
     }
+
 }

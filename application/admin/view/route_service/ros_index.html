@@ -1,0 +1,44 @@
+
+<div class="table-responsive">
+    <table id="service_table">
+    </table>
+</div>
+{include file='route_service/form'/}
+<script>
+    (function(){
+        var $table = $("#service_table");
+        $table.bootstrapTable({
+            url:"{:url('/RouteService/getRosStatus')}",
+            idField:'id',
+            search:true,
+            searchOnEnterKey:false,
+            clickToSelect:true,
+            striped:true,
+            pagination:true,
+            pageSize:15,
+            toolbar:'#service_table_btn',
+            columns:[
+                {field:'status',title:'是否正常',formatter:function(value,row,index){
+                    if(value)
+                    {
+                        return '是';
+                    } else {
+                        return '<sapn style="color:red">否</sapn>';
+                    }
+                }},
+                {field:'domain',title:'域名'},
+                {field:'name',title:'名称'},
+                {field:'cpu_ratio',title:'CPU占用率'},
+                {field:'memory_ratio',title:'内存占用率'},
+                {field:'free_hdd_space',title:'剩余空间(M)'},
+                {field:'active_num',title:'在线用户数'},
+                {field:'now_time',title:'系统当前时间'},
+                {field:'version',title:'系统版本号'},
+                {field:'uptime',title:'运行时间'},
+            ],
+        });
+    })(jQuery,window,document);
+
+</script>
+
+

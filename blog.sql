@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-05-14 12:44:44
+Date: 2017-05-14 23:10:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -63,7 +63,7 @@ CREATE TABLE `admin_user` (
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('1', 'chenhailong', '$2y$10$jEF0sQSPOwQtQFJDh05Hg.w8soTr0HxsujfLOCghMpzjeVJ24Au66', '1', '0', '');
+INSERT INTO `admin_user` VALUES ('1', 'chenhailong', '$2y$10$LFixu5DL5aKxtcqVZ79mxuKoCfdKJAvz9xWdQAwmRGLIlFAMubI66', '1', '0', '');
 
 -- ----------------------------
 -- Table structure for route_service
@@ -73,16 +73,20 @@ CREATE TABLE `route_service` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(60) NOT NULL DEFAULT '' COMMENT '服务器名称',
   `domain` varchar(40) NOT NULL DEFAULT '' COMMENT '服务器域名',
-  `ip` varchar(10) NOT NULL DEFAULT '' COMMENT '服务器IP',
+  `by_domain` varchar(200) NOT NULL DEFAULT '' COMMENT '备用域名（用竖线|分隔）',
   `port` int(5) NOT NULL DEFAULT '8728' COMMENT '服务器连接端口',
   `username` varchar(40) NOT NULL DEFAULT '' COMMENT '服务器登录用户名',
   `password` varchar(50) NOT NULL DEFAULT '' COMMENT '服务器登陆密码',
   `remark` varchar(400) NOT NULL DEFAULT '' COMMENT '备注',
+  `max_number` int(11) NOT NULL DEFAULT '0' COMMENT '最大允许在线人数',
+  `overdue` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '过期时间（服务器过期时间）',
   `create_time` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
   `update_time` int(11) NOT NULL DEFAULT '0' COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='rout os 服务器连接信息';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='rout os 服务器连接信息';
 
 -- ----------------------------
 -- Records of route_service
 -- ----------------------------
+INSERT INTO `route_service` VALUES ('1', 'home', 'home.webok.me', '', '8728', 'api', 'api', '123454353', '60', '0', '1494746889', '1494774315');
+INSERT INTO `route_service` VALUES ('3', 'ay1', 'ay1.webok.net', '', '8999', 'api', 'api', '', '80', '0', '1494750631', '1494774380');

@@ -10,7 +10,6 @@ namespace app\admin\controller;
 
 
 use app\admin\logic\ServiceLogic;
-use org\RouterosApi;
 use think\Request;
 use app\admin\Model\RouteService as Service;
 class RouteService extends App
@@ -18,19 +17,6 @@ class RouteService extends App
 
     public function index()
     {
-//        $rosApi = new RouterosApi();
-//        if($rosApi->connect('home.webok.me','api','api')){
-//            $rosApi->write('/interface/wireless/registration-table/print',false);
-//            $rosApi->write('=stats=');
-//            $read = $rosApi->read(true);
-//            echo '<pre>';
-//            print_r($read);
-//            echo '</pre>';die;
-//            $rosApi->disconnect();
-//        } else {
-//            echo '失败';
-//        }
-//        die;
         return view();
     }
 
@@ -68,7 +54,7 @@ class RouteService extends App
     }
 
     /**
-     * 删除操作
+     * 删除服务器操作
      * @return array
      */
     public function delData()
@@ -80,5 +66,24 @@ class RouteService extends App
         } else {
             throw new Exception(lang('error param'));
         }
+    }
+
+    /**
+     * ros状态列表
+     * @return \think\response\View
+     */
+    public function rosStatusList()
+    {
+        return view('ros_index');
+    }
+
+    /**
+     * 获取状态列表数据
+     * @return false|\PDOStatement|string|\think\Collection
+     */
+    public function getRosStatus()
+    {
+        $logic = new ServiceLogic(new Service());
+        return $logic->getRosStatusList();
     }
 }
