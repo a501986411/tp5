@@ -30,6 +30,31 @@ class RouteService extends App
         return $data;
     }
 
+
+    public function testLink()
+    {
+        if(Request::instance()->isPost()){
+            if(!Request::instance()->has('domain')){
+                return ['success'=>false,'msg'=>lang('error link params')];
+            }
+            if(!Request::instance()->has('port')){
+                return ['success'=>false,'msg'=>lang('error link params')];
+            }
+            if(!Request::instance()->has('username')){
+                return ['success'=>false,'msg'=>lang('error link params')];
+            }
+            if(!Request::instance()->has('password')){
+                return ['success'=>false,'msg'=>lang('error link params')];
+            }
+            $param = input();
+            $logic = new ServiceLogic(new Service());
+            return $logic->testLink($param);
+        } else{
+            throw new Exception(lang('error param'));
+        }
+    }
+
+
     /**
      * 保存信息操作
      * @return array

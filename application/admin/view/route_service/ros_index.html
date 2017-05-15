@@ -16,9 +16,10 @@
             striped:true,
             pagination:true,
             pageSize:15,
+            searchAlign:'left',
             toolbar:'#service_table_btn',
             columns:[
-                {field:'status',title:'是否正常',formatter:function(value,row,index){
+                {field:'status',title:'是否正常',sortable:true,align:'center',formatter:function(value,row,index){
                     if(value)
                     {
                         return '是';
@@ -26,15 +27,15 @@
                         return '<sapn style="color:red">否</sapn>';
                     }
                 }},
-                {field:'domain',title:'域名'},
-                {field:'name',title:'名称'},
-                {field:'cpu_ratio',title:'CPU占用率'},
-                {field:'memory_ratio',title:'内存占用率'},
-                {field:'free_hdd_space',title:'剩余空间(M)'},
-                {field:'active_num',title:'在线用户数'},
-                {field:'now_time',title:'系统当前时间'},
-                {field:'version',title:'系统版本号'},
-                {field:'uptime',title:'运行时间'},
+                {field:'domain',title:'域名',align:'center',sortable:true},
+                {field:'name',title:'名称',align:'center'},
+                {field:'cpu_ratio',title:'CPU占用率',align:'center',sortable:true},
+                {field:'memory_ratio',title:'内存占用率',align:'center',sortable:true},
+                {field:'free_hdd_space',title:'剩余空间(M)',align:'center',sortable:true},
+                {field:'active_ratio',title:'在线用户率',align:'center',sortable:true},
+                {field:'now_time',title:'系统当前时间',align:'center'},
+                {field:'version',title:'系统版本号',align:'center'},
+                {field:'uptime',title:'运行时间',align:'center'},
             ],
         });
     })(jQuery,window,document);

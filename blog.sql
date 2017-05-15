@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 127.0.0.1
-Source Server Version : 50617
+Source Server         : localhost
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : blog
 
 Target Server Type    : MYSQL
-Target Server Version : 50617
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-05-15 19:25:59
+Date: 2017-05-15 23:51:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -83,10 +83,11 @@ CREATE TABLE `route_service` (
   `create_time` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
   `update_time` int(11) NOT NULL DEFAULT '0' COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='rout os 服务器连接信息';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='rout os 服务器连接信息';
 
 -- ----------------------------
 -- Records of route_service
 -- ----------------------------
-INSERT INTO `route_service` VALUES ('1', 'home', 'home.webok.me', 'vpn.webok.me', '8728', 'api', 'api', '123454353', '60', '0', '1494746889', '1494845367');
-INSERT INTO `route_service` VALUES ('3', 'ay1', 'ay1.webok.net', '', '8999', 'api', 'api', '', '80', '0', '1494750631', '1494774380');
+INSERT INTO `route_service` VALUES ('1', 'home', 'home.webok.me', 'vpn.webok.me', '8728', 'api', 'api', '123454353', '60', '0', '1494746889', '1494859715');
+INSERT INTO `route_service` VALUES ('3', 'ay1', 'ay1.webok.net', '', '8999', 'api', 'api', '', '80', '0', '1494750631', '1494859724');
+INSERT INTO `route_service` VALUES ('4', 'xz', 'xz009.webok.net', 'xz10.webok.net|xz11.webok.net|xz12.webok.net|xz88.webok.net', '8999', 'api', 'api', '', '60', '1496211300', '1494858027', '1494858027');
