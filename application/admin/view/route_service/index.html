@@ -13,6 +13,7 @@
         var $addBtn = $('#add_btn');
         var $delBtn = $('#del_btn');
         var $addBtnDlg = $('#service_info_dlg');
+
         //服务器信息弹框
         var addDialog = new  BootstrapDialog({
             title:'新增服务器',
@@ -28,6 +29,10 @@
                 if(!$.is_null(dialogRef.data)){ //修改 表单赋值
                     $form.formLoad(dialogRef.data);
                 }
+                $("#overdue").datetimepicker({
+                    format: 'yyyy-mm-dd hh:ii',
+                    locale: moment.locale('zh-cn'),
+                });
             },
             buttons:[{
                 id:'btn-ok',

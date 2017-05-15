@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50505
+Source Server         : 127.0.0.1
+Source Server Version : 50617
 Source Host           : localhost:3306
 Source Database       : blog
 
 Target Server Type    : MYSQL
-Target Server Version : 50505
+Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-05-14 23:10:46
+Date: 2017-05-15 19:25:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -63,7 +63,7 @@ CREATE TABLE `admin_user` (
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('1', 'chenhailong', '$2y$10$LFixu5DL5aKxtcqVZ79mxuKoCfdKJAvz9xWdQAwmRGLIlFAMubI66', '1', '0', '');
+INSERT INTO `admin_user` VALUES ('1', 'chenhailong', '$2y$10$Dvr4kUErM.WA6UakA.PdaOeTpQ05HFCug7fpYrUlygRdHa5JFVJtW', '1', '0', '');
 
 -- ----------------------------
 -- Table structure for route_service
@@ -88,5 +88,5 @@ CREATE TABLE `route_service` (
 -- ----------------------------
 -- Records of route_service
 -- ----------------------------
-INSERT INTO `route_service` VALUES ('1', 'home', 'home.webok.me', '', '8728', 'api', 'api', '123454353', '60', '0', '1494746889', '1494774315');
+INSERT INTO `route_service` VALUES ('1', 'home', 'home.webok.me', 'vpn.webok.me', '8728', 'api', 'api', '123454353', '60', '0', '1494746889', '1494845367');
 INSERT INTO `route_service` VALUES ('3', 'ay1', 'ay1.webok.net', '', '8999', 'api', 'api', '', '80', '0', '1494750631', '1494774380');
