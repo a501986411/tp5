@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-05-15 23:51:06
+Date: 2017-05-16 22:41:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,7 +29,7 @@ CREATE TABLE `admin_menu` (
   `path` varchar(20) NOT NULL DEFAULT '' COMMENT '上级所有节点路径如（1-3-4）',
   `is_update_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否支持启用或者停用操作1：支持，0：不支持',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COMMENT='菜单数据表';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1 COMMENT='菜单数据表';
 
 -- ----------------------------
 -- Records of admin_menu
@@ -45,6 +45,8 @@ INSERT INTO `admin_menu` VALUES ('8', '0', '评论管理', '', '3', '2', '', '1'
 INSERT INTO `admin_menu` VALUES ('9', '0', 'ROS管理', '', '3', '1', '', '1');
 INSERT INTO `admin_menu` VALUES ('10', '9', '服务器管理', '/RouteService/index', '1', '1', '9', '1');
 INSERT INTO `admin_menu` VALUES ('11', '9', 'ROS状态列表', '/RouteService/rosStatusList', '2', '1', '9', '1');
+INSERT INTO `admin_menu` VALUES ('12', '0', '用户管理', '', '4', '1', '', '1');
+INSERT INTO `admin_menu` VALUES ('13', '12', '管理员账号', '/AdminUser/index', '1', '1', '12', '1');
 
 -- ----------------------------
 -- Table structure for admin_user
@@ -57,13 +59,16 @@ CREATE TABLE `admin_user` (
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否启用1：启用，0：停用',
   `last_login_time` int(11) NOT NULL DEFAULT '0' COMMENT '最后一次登录时间',
   `last_login_ip` varchar(20) NOT NULL DEFAULT '' COMMENT '最后一次登录IP',
+  `create_time` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(11) NOT NULL DEFAULT '0' COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='管理后台用户基础信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='管理后台用户基础信息表';
 
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('1', 'chenhailong', '$2y$10$Dvr4kUErM.WA6UakA.PdaOeTpQ05HFCug7fpYrUlygRdHa5JFVJtW', '1', '0', '');
+INSERT INTO `admin_user` VALUES ('1', 'chenhailong', '$2y$10$B1G5cC8XJR66bOzTKY6JzOonr0DUGtyDkeXjESEBjhlC0ZwmANyo.', '1', '1494945652', '127.0.0.1', '0', '1494945651');
+INSERT INTO `admin_user` VALUES ('2', 'admin', '$2y$10$MU3FJLO44HnqYB/IX1uRZ.Uzh4pKIwD1c.FIz2KIZYfV72FIN.FTu', '1', '1494944996', '127.0.0.1', '1494939786', '1494944996');
 
 -- ----------------------------
 -- Table structure for route_service

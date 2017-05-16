@@ -11,13 +11,40 @@
 	use think\Model;
 	class AdminUser extends Model
 	{
-		protected $_status_two = ['id' => 0, 'name' => '停用'];
+		protected $_status_zero = ['id' => 0, 'name' => '停用'];
 		protected $_status_one = ['id' => 1, 'name' => '启用'];
-		protected $insert = ['password_hash'];
+		protected $insert = ['status','password_hash'];
+        protected $autoWriteTimestamp = true;//自动写入时间戳
 		protected function initialize()
 		{
 			parent::initialize();
 		}
+
+        /**
+         * 获取状态名称
+         * @param $value
+         * @param $data
+         * @return mixed
+         */
+		public function getStatusNameAttr($value,$data)
+        {
+            switch ($data['status']){
+                case $this->_status_one['id']:
+                    return $this->_status_one['name'];
+                    break;
+                case $this->_status_zero['id']:
+                    return $this->_status_zero['name'];
+                    break;
+            }
+        }
+
+        /**
+         * 获取字符串
+         */
+        public function getLastLoginTimeStrAttr($value,$data)
+        {
+            return date('Y-m-d H:i:s',$data['last_login_time']);
+        }
 
 		/**
 		 * hash加密密码
@@ -29,7 +56,14 @@
 		 */
 		public function setPasswordHashAttr($value,$data)
 		{
-			return password_hash($data['password'],PASSWORD_DEFAULT);
+			return isset($data['password_hash']) ? password_hash($data['password_hash'],PASSWORD_DEFAULT):'';
 		}
 
+        /**
+         * 设置默认状态
+         * @return array
+         */
+		public function setStatusAttr(){
+		    return $this->_status_one;
+        }
 	}
