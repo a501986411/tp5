@@ -77,4 +77,38 @@ class AdminUser extends App
             throw new Exception(lang('error param'));
         }
     }
+
+    /**
+     * 修改密码
+     * @access public
+     * @return array|\think\response\View
+     * @author knight
+     */
+    public function updatePwdIndex()
+    {
+        $userInfo = cookie('user');
+        $userInfo = json_decode($userInfo,true);
+        return view('updatePwd',['username'=>$userInfo['username'],'id'=>$userInfo['id']]);
+
+    }
+
+    /**
+     * 修改密码
+     * @access public
+     * @return array
+     * @author knight
+     */
+    public function updatePwd()
+    {
+        if(Request::instance()->isPost()){
+            $result = $this->validate(input(),'AdminUserValidate.updatePwd');
+            if($result !==true){
+                return retFalse($result);
+            }
+            $logic = new AdminUserLogic(new \app\admin\model\AdminUser());
+            return $logic->updatePwd(input());
+        }else{
+            throw new Exception(lang('error param'));
+        }
+    }
 }

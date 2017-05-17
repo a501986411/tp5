@@ -24,7 +24,6 @@
 		 */
 		public function index()
 		{
-//		    var_dump(password_verify('33962010','$2y$10$KmzVkk2Qx7JncX0qzhuSFebG7dj6jEMFK4Aa2rI0qukd3IFt1O7nq'));die;
 			if(Request::instance()->isPost()){
 				$username = input('post.username');
 				$password = input('post.password');

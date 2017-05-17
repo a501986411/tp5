@@ -56,9 +56,24 @@
 		 */
 		public function setPasswordHashAttr($value,$data)
 		{
-			return isset($data['password_hash']) ? password_hash($data['password_hash'],PASSWORD_DEFAULT):'';
+			return isset($data['password_hash']) ? md5(md5($data['password_hash'])):'';
 		}
-
+		/**
+		 * 验证密码
+		 * 成功返回true,失败返回false
+		 * @access public
+		 * @param $password
+		 * @param $passwordHash
+		 * @return bool
+		 * @author knight
+		 */
+		public function checkPassword($password,$passwordHash)
+		{
+			if( md5(md5($password)) === $passwordHash){
+				return true;
+			}
+			return false;
+		}
         /**
          * 设置默认状态
          * @return array

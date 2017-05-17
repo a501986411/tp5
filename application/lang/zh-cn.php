@@ -13,4 +13,5 @@ return [
 	'no options'   =>'所选数据不支持该操作',
 	'login timeout'   =>'登录超时，请重新登录',
 	'error link params'   =>'连接信息错误',
+	'error password'   =>'密码错误',
 ];

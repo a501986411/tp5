@@ -81,4 +81,27 @@ class AdminUserLogic extends Model
        }
         return ['success'=>true,'msg'=>lang('success options')];
     }
+
+    /**
+     * @access public
+     * @param $data
+     * @return void
+     * @author knight
+     */
+    public function updatePwd($data)
+    {
+        $passwordHash= $this->model
+            ->where('id',$data['id'])
+            ->field(['password_hash'])
+            ->find();
+        if(!$this->model->checkPassword($data['old_password_hash'],$passwordHash['password_hash'])){
+            return ['success'=>true,'msg'=>lang('error password')];
+        }
+        $newPwd['password_hash'] = $data['new_password_hash1'];
+        $result = $this->model->allowField(['password_hash'])->save($newPwd,['id',$data['id']]);
+        if($result === false){
+            return  retFalse();
+        }
+        return retTrue();
+    }
 }

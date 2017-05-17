@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50505
+Source Server         : 127.0.0.1
+Source Server Version : 50617
 Source Host           : localhost:3306
 Source Database       : blog
 
 Target Server Type    : MYSQL
-Target Server Version : 50505
+Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-05-16 22:41:58
+Date: 2017-05-17 18:04:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,7 +29,7 @@ CREATE TABLE `admin_menu` (
   `path` varchar(20) NOT NULL DEFAULT '' COMMENT '上级所有节点路径如（1-3-4）',
   `is_update_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否支持启用或者停用操作1：支持，0：不支持',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1 COMMENT='菜单数据表';
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 COMMENT='菜单数据表';
 
 -- ----------------------------
 -- Records of admin_menu
@@ -47,6 +47,7 @@ INSERT INTO `admin_menu` VALUES ('10', '9', '服务器管理', '/RouteService/in
 INSERT INTO `admin_menu` VALUES ('11', '9', 'ROS状态列表', '/RouteService/rosStatusList', '2', '1', '9', '1');
 INSERT INTO `admin_menu` VALUES ('12', '0', '用户管理', '', '4', '1', '', '1');
 INSERT INTO `admin_menu` VALUES ('13', '12', '管理员账号', '/AdminUser/index', '1', '1', '12', '1');
+INSERT INTO `admin_menu` VALUES ('14', '12', '修改密码', '/AdminUser/updatePwdIndex', '2', '1', '12', '1');
 
 -- ----------------------------
 -- Table structure for admin_user
@@ -67,8 +68,8 @@ CREATE TABLE `admin_user` (
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES ('1', 'chenhailong', '$2y$10$B1G5cC8XJR66bOzTKY6JzOonr0DUGtyDkeXjESEBjhlC0ZwmANyo.', '1', '1494945652', '127.0.0.1', '0', '1494945651');
-INSERT INTO `admin_user` VALUES ('2', 'admin', '$2y$10$MU3FJLO44HnqYB/IX1uRZ.Uzh4pKIwD1c.FIz2KIZYfV72FIN.FTu', '1', '1494944996', '127.0.0.1', '1494939786', '1494944996');
+INSERT INTO `admin_user` VALUES ('1', 'chenhailong', '341106d58d01b48fe78fb9cc4de00c22', '0', '1495005404', '127.0.0.1', '0', '1495005404');
+INSERT INTO `admin_user` VALUES ('2', 'admin', '14e1b600b1fd579f47433b88e8d85291', '1', '1495015322', '127.0.0.1', '1494939786', '1495015322');
 
 -- ----------------------------
 -- Table structure for route_service

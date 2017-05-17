@@ -37,7 +37,7 @@
 			if(empty($userInfo)){
                 return false;
             }
-			if($this->checkPassword($password,$userInfo['password_hash'])){
+			if($this->model->checkPassword($password,$userInfo['password_hash'])){
 				//密码验证成功 写cookie
 				cookie('user',json_encode($userInfo,JSON_UNESCAPED_UNICODE));
 				$data['last_login_time'] = time();
@@ -51,21 +51,6 @@
 			return false;
 		}
 
-
-
-		/**
-		 * 验证密码
-		 * 成功返回true,失败返回false
-		 * @access public
-		 * @param $password
-		 * @param $passwordHash
-		 * @return bool
-		 * @author knight
-		 */
-		private function checkPassword($password,$passwordHash)
-		{
-			return password_verify($password,$passwordHash);
-		}
 
         /**
          * 检查cookie确认是否存在用户信息
