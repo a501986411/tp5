@@ -95,13 +95,14 @@ class AdminUserLogic extends Model
             ->field(['password_hash'])
             ->find();
         if(!$this->model->checkPassword($data['old_password_hash'],$passwordHash['password_hash'])){
-            return ['success'=>true,'msg'=>lang('error password')];
+            return retFalse(lang('error password'));
         }
         $newPwd['password_hash'] = $data['new_password_hash1'];
-        $result = $this->model->allowField(['password_hash'])->save($newPwd,['id',$data['id']]);
+        $result = $this->model->allowField(['password_hash'])->save($newPwd,['id'=>$data['id']]);
         if($result === false){
             return  retFalse();
         }
+        cookie(null,'admin_');
         return retTrue();
     }
 }

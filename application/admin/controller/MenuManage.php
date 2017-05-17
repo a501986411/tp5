@@ -6,7 +6,7 @@
  * Time: 13:48
  */
 namespace app\admin\controller;
-use app\admin\Model\AdminMenu;
+use app\admin\model\AdminMenu;
 use think\Db;
 use think\image\Exception;
 use \app\admin\logic\AdminMenuLogic;

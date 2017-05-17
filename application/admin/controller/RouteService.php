@@ -11,7 +11,7 @@ namespace app\admin\controller;
 
 use app\admin\logic\ServiceLogic;
 use think\Request;
-use app\admin\Model\RouteService as Service;
+use app\admin\model\RouteService as Service;
 class RouteService extends App
 {
 

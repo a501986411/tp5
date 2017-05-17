@@ -99,10 +99,10 @@ class ServiceLogic extends Model
                 //转换时间
                 if(strpos($rosInfo['uptime'],'w')>-1){
                     $w = substr($rosInfo['uptime'],0,strpos($rosInfo['uptime'],'w'));
-                    $d = bcmul($w , 7);
+                    $d = $w * 7;
                     if(strpos($rosInfo['uptime'],'d')>-1){
                         $d += substr($rosInfo['uptime'],strpos($rosInfo['uptime'],'w'),strpos($rosInfo['uptime'],'d')-strpos($rosInfo['uptime'],'w'));
-                        $rosInfo['uptime'] = $d.substr($rosInfo['uptime'],strpos($rosInfo['uptime'],'d')+1);
+                        $rosInfo['uptime'] = $d.'d'.substr($rosInfo['uptime'],strpos($rosInfo['uptime'],'d')+1);
                     } else {
                         $rosInfo['uptime'] = $d.'d'.substr($rosInfo['uptime'],(strpos($rosInfo['uptime'],'w')+1));
                     }
@@ -115,7 +115,7 @@ class ServiceLogic extends Model
                 $list[$k]->cpu_ratio = $rosInfo['cpu-load'].'%';
                 $list[$k]->free_hdd_space = round($rosInfo['free-hdd-space']/(1024*1024),1);
                 $activeNum = $this->getPppInfo($rosApi,$v['domain'],$v['port'],$v['username'],$v['password']);
-                $list[$k]->active_ratio = bcmul(($activeNum/(int)$v->max_number),100,2).'%';
+                $list[$k]->active_ratio = round(($activeNum/(int)$v->max_number)*100,2).'%';
                 $list[$k]->now_time = $this->getNowTime($rosApi,$v['domain'],$v['port'],$v['username'],$v['password']);
             }
         }

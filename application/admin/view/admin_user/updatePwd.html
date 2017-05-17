@@ -40,7 +40,7 @@
                 success:function(result){
                     $.dialogMsg({message:result.msg});
                     if(result.success){
-                        window.location.herf('{:url("/Login/loginOut")}');
+                        location.reload();
                     }
                 }
             });
