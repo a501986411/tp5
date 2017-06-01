@@ -22,3 +22,19 @@ function enDateToCn($date)
     $cn = ['01','02','03','04','05','06','07','08','09','10','11','12'];
     return str_replace($en,$cn,$date);
 }
+/**
+ * 数据调试
+ * @param array $data 数据
+ * @param string $pattern 输出类型
+ * @return void
+ */
+function debug($data)
+{
+    if (config('APP_DEBUG')) {
+        echo '<pre>' . PHP_EOL;
+        echo '[type] ' . gettype($data) . PHP_EOL;
+        echo '[data] ';
+        print_r($data);
+        exit;
+    }
+}
