@@ -21,6 +21,19 @@
             return view('',['menuList'=>$menuList]);
         }
 
+        /**
+         * 默认显示页面
+         * @access public
+         * @return \think\response\View
+         * @author knight
+         */
+        public function showIndex()
+        {
+            $this->view->engine->layout(false);
+            return view();
+        }
+
+
         public function createIndex()
         {
             return view();

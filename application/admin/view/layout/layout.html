@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <title>ROS管理系统</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta content='text/html;charset=utf-8' http-equiv='content-type'>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="Bookmark" href="{$Think.const.STATIC_PATH}img/favicon.ico" >
+    <link rel="Shortcut Icon" href="{$Think.const.STATIC_PATH}img/favicon.ico" />
+
     <link rel="stylesheet" href="{$Think.const.STATIC_PATH}bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="{$Think.const.STATIC_PATH}bootstrap/css/bootstrap-theme.css">
     <link rel="stylesheet" href="{$Think.const.STATIC_PATH}bootstrap-table/dist/bootstrap-table.min.css">
@@ -25,86 +28,32 @@
     <script type="text/javascript" src="{$Think.const.STATIC_PATH}js/jqUnitCookie.js"></script>
     <script type="text/javascript" src="{$Think.const.STATIC_PATH}js/jq-tool.js"></script>
 
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="{$Think.const.STATIC_PATH}lib/html5shiv.js"></script>
+    <script type="text/javascript" src="{$Think.const.STATIC_PATH}lib/respond.min.js"></script>
+
+    <![endif]-->
+    <link href="{$Think.const.STATIC_PATH}/h-ui/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.const.STATIC_PATH}/h-ui.admin/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.const.STATIC_PATH}lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css" />
+
+    <!--[if IE 6]>
+    <script type="text/javascript" src="{$Think.const.STATIC_PATH}lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <title>ROS管理系统</title>
 </head>
-
 <body>
-<!--顶部导航条-->
-<nav class="navbar best-top-menu">
-    <div class="container-fluid">
-        <div class="navbar-collapse collapse extend-width no-pd-lf no-pd-rt">
-            <ul class="nav navbar-nav fr menu-font-color">
-                <li><a href="{:url('/Login/loginOut')}" class="menu-font-color">安全退出</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<?php
-    use think\Db;
-    use org\PhpTree;
-    $menuList = Db::query('select * from admin_menu where status=1');
-    $tree = new PhpTree();
-    $menuTree = $tree->makeTree($menuList);
-?>
-<nav class="navbar no-bd-tp no-mg-bt no-bd-bt no-bd-lf no-bd-rt">
-    <div class="container-fluid no-pd-lf no-pd-rt no-mg-rt">
-        <div id="navbarTop2" class="navbar-collapse collapse extend-width no-pd-lf no-pd-rt first-menu-bg-color">
-            <ul class="nav navbar-nav navbar-left">
-                <?php
-                    foreach($menuTree as $k=>$value){
-                        if($value['pid'] == 0){
-                        echo '<li class="first-menu" data-id="'.$value['id'].'"><a href="javascript:void(0);" class="menu-font-color">'.$value['name'].'</a></li>';
-                        }
-                    }
-                ?>
-            </ul>
-        </div>
-    </div>
-</nav>
-<div class="container no-mg-lf no-mg-rt extend-width">
-    <div class="row">
-        <div class="col-sm-3 col-md-1 sidebar no-pd-lf no-pd-rt">
-            <?php foreach($menuTree as $k=>$v):?>
-            <ul class="nav nav-sidebar hidden pid-{$v.id}">
-                <?php if(isset($v['children']) && !empty($v['children'])):?>
-                    <?php foreach($v['children'] as $k1=>$v1):?>
-                    <li class="active second-menu "><a href="{:url($v1.url,['menuId'=>$v1.pid])}">{$v1.name}</a></li>
-                    <?php endforeach; ?>
-                <?php endif;?>
-            </ul>
-            <?php endforeach;?>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-2 main no-mg-lf no-pd-rt">
-            <div class="panel">
-                {__CONTENT__}
-            </div>
-
-        </div>
-    </div>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 角色管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="pd-20">
+    {__CONTENT__}
 </div>
-
+<script type="text/javascript" src="{$Think.const.STATIC_PATH}lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="{$Think.const.STATIC_PATH}lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="{$Think.const.STATIC_PATH}lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="{$Think.const.STATIC_PATH}lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript" src="{$Think.const.STATIC_PATH}/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="{$Think.const.STATIC_PATH}/h-ui.admin/js/H-ui.admin.js"></script>
 </body>
 
-<script>
-
-    $('.first-menu').click(function(){
-        var secondClass = $(this).data('id');
-        var oldClass = $('.pid-'+secondClass).hasClass('hidden');
-        if(oldClass){
-            $('.second-menu').parent('ul').addClass('hidden');
-            $('.pid-'+secondClass).removeClass('hidden');
-        }
-    });
-
-    /**
-     * 二级菜单联动
-     */
-    $(document).ready(function(){
-        var menuId = $.cookie('admin_menuId');
-        var oldClass = $('.pid-'+menuId).hasClass('hidden');
-        if(oldClass){
-            $('.second-menu').parent('ul').addClass('hidden');
-            $('.pid-'+menuId).removeClass('hidden');
-        }
-    });
-</script>
 </html>

@@ -29,14 +29,13 @@
 				$password = input('post.password');
 				$logic = new LoginLogic(new AdminUser());
 				if($logic->login($username,$password)){
-					$this->success('登录成功',url('/RouteService/index'));
+					$this->success('登录成功',url('/Index/index'));
 				} else {
 					$this->error('用户名或者密码错误',url('/Login/index'));
 				}
 			} else{
 				//登录页面 不需要模板布局
 				$this->view->engine->layout(false);
-
 				return view();
 			}
 
