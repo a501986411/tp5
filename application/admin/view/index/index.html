@@ -67,13 +67,13 @@
                   <dl id="menu-article">
                         <dt><i class="Hui-iconfont">&#xe616;</i>{$menu['name']}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
                         <?php if(!empty($menu['children'])):?>
-                          <?php foreach($menu['children'] as $k=>$v):?>
-                            <dd>
-                                <ul>
-                                    <li><a data-href="{:url($v['url'])}" data-title="{$v['name']}" href="javascript:void(0)">{$v['name']}</a></li>
-                                </ul>
-                            </dd>
-                          <?php endforeach;?>
+                        <dd>
+                            <ul>
+                                <?php foreach($menu['children'] as $k=>$v):?>
+                                <li  onclick="nav.menuClick()"><a data-href="{:url($v['url'])}" data-title="{$v['name']}" href="javascript:void(0)">{$v['name']}</a></li>
+                                <?php endforeach;?>
+                            </ul>
+                        </dd>
                       <?php endif;?>
                 </dl>
             <?php endforeach;?>
@@ -125,6 +125,15 @@ nav.myselfinfo = function () {
         title: '查看信息',
         content: '<div>管理员信息</div>'
     });
+}
+nav.menuClick = function(){
+    var text = $(this).parent('dl').find('dt').text();
+    console.log($(this).prev('ul'));
+//    $(".show_iframe").each(function(){
+//       if($(this).css('display') === 'block'){
+//            $(this).find('.breadcrumb').html();
+//       }
+//    });
 }
 </script>
 </body>
