@@ -13,6 +13,8 @@
         .system-message .success,.system-message .error{ line-height: 1.8em; font-size: 36px; }
         .system-message .detail{ font-size: 12px; line-height: 20px; margin-top: 12px; display: none; }
     </style>
+    <script type="text/javascript" src="{$Think.const.STATIC_PATH}lib/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{$Think.const.STATIC_PATH}/h-ui/js/H-ui.min.js"></script>
 </head>
 <body>
     <div class="system-message">
@@ -38,7 +40,14 @@
             var interval = setInterval(function(){
                 var time = --wait.innerHTML;
                 if(time <= 0) {
-                    location.href = href;
+                    var isExpire = $.cookie('admin_is_expire');
+                    console.log(isExpire);
+                    if(isExpire==200){ //登录超时
+                        $.cookie('admin_is_expire', null, { path: '/' });
+                        top.location.href = href;
+                    } else {
+                        location.href = href;
+                    }
                     clearInterval(interval);
                 };
             }, 1000);

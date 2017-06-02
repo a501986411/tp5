@@ -182,7 +182,10 @@ function removeIframeAll(){
 	w		弹出层宽度（缺省调默认值）
 	h		弹出层高度（缺省调默认值）
 */
-function layer_show(title,url,w,h){
+function layer_show(title,url,w,h,type){
+	if(type==null || type == ''){
+		type =1 ;
+	}
 	if (title == null || title == '') {
 		title=false;
 	};
@@ -196,7 +199,7 @@ function layer_show(title,url,w,h){
 		h=($(window).height() - 50);
 	};
 	layer.open({
-		type: 2,
+		type: type,
 		area: [w+'px', h +'px'],
 		fix: false, //不固定
 		maxmin: true,

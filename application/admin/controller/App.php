@@ -15,32 +15,19 @@
 		private $menuId;
 		protected $beforeActionList = [
 		    'interceptor' ,//拦截器
-            'setMenuId',//设置菜单cookie 用于菜单回显
         ];
 
 		public function __construct()
 		{
 		    parent::__construct();
 		}
-
-        /**
-         * 设置菜单Id缓存
-         */
-		protected function setMenuId(){
-            if(Request::instance()->has('menuId')){
-                $this->menuId = input('param.menuId');
-                if($this->menuId){
-                    cookie('menuId',$this->menuId);
-                }
-            }
-        }
-
         /**
          * 访问拦截器
          */
         protected function interceptor(){
             $logic = new LoginLogic(new AdminUser());
             if(!$logic->checkLoginStatus()){
+                cookie('is_expire',200);
                 $this->error(lang('login timeout'),url('/Login/index'));
             } else {
                 cookie('user',cookie('user'));

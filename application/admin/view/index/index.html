@@ -1,26 +1,4 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="Bookmark" href="{$Think.const.STATIC_PATH}img/favicon.ico" >
-    <link rel="Shortcut Icon" href="{$Think.const.STATIC_PATH}img/favicon.ico" />
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="{$Think.const.STATIC_PATH}lib/html5shiv.js"></script>
-    <script type="text/javascript" src="{$Think.const.STATIC_PATH}lib/respond.min.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" type="text/css" href="{$Think.const.STATIC_PATH}h-ui/css/H-ui.min.css" />
-    <link rel="stylesheet" type="text/css" href="{$Think.const.STATIC_PATH}h-ui.admin/css/H-ui.admin.css" />
-    <link rel="stylesheet" type="text/css" href="{$Think.const.STATIC_PATH}lib/Hui-iconfont/1.0.8/iconfont.css" />
-    <link rel="stylesheet" type="text/css" href="{$Think.const.STATIC_PATH}h-ui.admin/skin/default/skin.css" id="skin" />
-    <link rel="stylesheet" type="text/css" href="{$Think.const.STATIC_PATH}h-ui.admin/css/style.css" />
-    <!--[if IE 6]>
-    <script type="text/javascript" src="{$Think.const.STATIC_PATH}lib/DD_belatedPNG_0.0.8a-min.js" ></script>
-    <script>DD_belatedPNG.fix('*');</script>
-    <![endif]-->
+{include file='public:_meta'}
     <title>陈海龙的博客管理系统</title>
     <meta name="keywords" content="博客后台管理,陈海龙,PHP,生活感想">
     <meta name="description" content="陈海龙的博客管理系统">
@@ -65,12 +43,12 @@
 
               <?php foreach($menuList as $key=>$menu):?>
                   <dl id="menu-article">
-                        <dt><i class="Hui-iconfont">&#xe616;</i>{$menu['name']}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+                        <dt data-title="{$menu['name']}"><i class="Hui-iconfont">&#xe616;</i>{$menu['name']}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
                         <?php if(!empty($menu['children'])):?>
                         <dd>
                             <ul>
                                 <?php foreach($menu['children'] as $k=>$v):?>
-                                <li  onclick="nav.menuClick()"><a data-href="{:url($v['url'])}" data-title="{$v['name']}" href="javascript:void(0)">{$v['name']}</a></li>
+                                <li><a data-href="{:url($v['url'])}" data-title="{$v['name']}" href="javascript:void(0)">{$v['name']}</a></li>
                                 <?php endforeach;?>
                             </ul>
                         </dd>
@@ -125,15 +103,6 @@ nav.myselfinfo = function () {
         title: '查看信息',
         content: '<div>管理员信息</div>'
     });
-}
-nav.menuClick = function(){
-    var text = $(this).parent('dl').find('dt').text();
-    console.log($(this).prev('ul'));
-//    $(".show_iframe").each(function(){
-//       if($(this).css('display') === 'block'){
-//            $(this).find('.breadcrumb').html();
-//       }
-//    });
 }
 </script>
 </body>

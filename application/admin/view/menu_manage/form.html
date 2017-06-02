@@ -1,28 +1,29 @@
 <div class="hidden" style="clear: both" id="menu_info_dlg">
-    <form class="form-horizontal" id="menu_info_fm">
-        <input type="hidden" class="form-control" id="id" name="id" placeholder="id">
-        <div class="form-group">
-            <label for="name" class="col-sm-2 control-label">名称:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="name" name="name" placeholder="名称">
+<article class="page-container">
+    <form class="form  form-horizontal" id="menu_info_fm">
+        <input type="hidden" class="input-text" id="id" name="id" placeholder="id">
+        <div class="row cl">
+            <label for="name" class="form-label col-xs-4 col-sm-3">名称:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" id="name" name="name" placeholder="名称">
             </div>
         </div>
-        <div class="form-group">
-            <label for="url" class="col-sm-2 control-label">URL:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="url" name="url" placeholder="url">
+        <div class="row cl">
+            <label for="url" class="form-label col-xs-4 col-sm-3">URL:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" id="url" name="url" placeholder="url">
             </div>
         </div>
-        <div class="form-group">
-            <label for="sort" class="col-sm-2 control-label">排序:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="sort" name="sort" placeholder="排序">
+        <div class="row cl">
+            <label for="sort" class="form-label col-xs-4 col-sm-3">排序:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" id="sort" name="sort" placeholder="排序">
             </div>
         </div>
-        <div class="form-group">
-            <label for="url" class="col-sm-2 control-label">上级菜单:</label>
-            <div class="col-sm-10">
-                <select class="form-control" name="pid" id="pid">
+        <div class="row cl">
+            <label for="url" class="form-label col-xs-4 col-sm-3">上级菜单:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <select class="input-text" name="pid" id="pid">
                     <option value="0">请选择</option>
                     <?php foreach($pMenu as $k=>$v): ?>
                         <option value="{$v.id}">{$v.name}</option>
@@ -30,17 +31,21 @@
                 </select>
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <div class="checkbox">
-                    <label>
-                        <input type="radio" name="status" id="status1" value="1" checked="checked"> 启用
-                    </label>
-                    <label>
-                        <input type="radio" name="status" id="status2" value="2"> 停用
-                    </label>
-                </div>
+        <div class="row cl">
+            <label for="url" class="form-label col-xs-4 col-sm-3">状态:</label>
+            <div class="formControls skin-minimal col-xs-8 col-sm-9">
+                    <div class="radio-box">
+                        <input type="radio" name="status" id="status1" value="1"  checked="checked"  style="width:20px;height: 17px;">&nbsp;&nbsp;
+                        <label for="status1">启用</label>
+                    </div>
+                    <div class="radio-box">
+                        <input type="radio" name="status" id="status2" value="2" style="width:20px;height: 17px;">&nbsp;&nbsp;
+                        <label for="status2">停用</label>
+                    </div>
+
             </div>
         </div>
     </form>
+
+</article>
 </div>

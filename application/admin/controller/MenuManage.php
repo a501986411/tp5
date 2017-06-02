@@ -32,21 +32,9 @@ class MenuManage extends App
 	{
 		$logic = new AdminMenuLogic(new AdminMenu());
 		$list = $logic->getMenuSelect();
-		return view('',['pMenu'=>$list]);
+		$menuList = $logic->getList();
+		return view('',['pMenu'=>$list,'menuList'=>$menuList]);
 	}
-
-	/**
-	 * 菜单管理列表
-	 * @access public
-	 * @return false|\PDOStatement|string|\think\Collection
-	 * @author knight
-	 */
-	public function getList(){
-		$logic = new AdminMenuLogic(new AdminMenu());
-		$list = $logic->getList();
-		return $list;
-	}
-
 	/**
 	 * 改变菜单状态
 	 * @access public
