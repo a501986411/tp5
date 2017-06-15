@@ -98,4 +98,15 @@ class MenuManage extends App
 		}
 
 	}
+
+    /**
+     * 获取列表
+     * @return false|\PDOStatement|string|\think\Collection
+     */
+	public function getList()
+    {
+        $logic = new AdminMenuLogic(new AdminMenu());
+        $list = $logic->getTableList($_GET);
+        return $list;
+    }
 }

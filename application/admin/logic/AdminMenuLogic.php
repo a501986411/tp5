@@ -33,15 +33,49 @@
 			return $list;
 		}
 
+        /**
+         * 获取菜单显示列表
+         * @return false|\PDOStatement|string|\think\Collection
+         */
 		public function getList()
 		{
 			$list = $this->model->select();
 			foreach($list as $k=>&$v){
 				 $v->status_name = $v->status_name;
 				 $v->pid_name = $v->pid_name;
+				 $v = $v->toArray();
 			}
 			return $list;
 		}
+
+        /**
+         * 获取table数据
+         * @param $get
+         * @return mixed
+         */
+		public function getTableList($get)
+        {
+            if(isset($get['order'])){ //排序
+                $order = [];
+                foreach($get['order'] as $k=>$v){
+                    $order[$get['columns'][$v['column']]['name']] = $v['dir'];
+                }
+                $this->model->order($order);
+            }
+            $list = $this->model
+                         ->limit($get['start'],$get['length'])
+                         ->select();
+            foreach($list as $k=>&$v){
+                $v->status_name = $v->status_name;
+                $v->pid_name = $v->pid_name;
+                $v = $v->toArray();
+            }
+            $data['data'] = $list;
+            $data['recordsFiltered'] = $this->model->count('id');
+            $data['recordsTotal'] = $this->model->count('id');
+            $data['draw'] = $get['draw'];
+            return $data;
+        }
 
 		/**
 		 * 修改或者保存菜单
