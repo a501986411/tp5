@@ -8,7 +8,6 @@
             <button type="button" class="btn btn-primary radius" id="use_true">启用</button>
             <button type="button" class="btn btn-warning radius" id="use_false">停用</button>
         </span>
-        <span class="r">共有数据：<strong>{:count($menuList)}</strong> 条</span>
     </div>
     <div class="mt-20">
         <table id="menu_table" class="table table-border table-bordered table-hover table-bg table-sort">
@@ -36,9 +35,9 @@
             ajax:'{:url("getList")}',
             columns: [
                 { data: "name",name:'name'},
-                { data: "pid_name",orderable:false},
-                { data: "url",orderable:false},
-                { data: "status_name",name:'status'},
+                { data: "pid_name",orderable:false,searchable:false},
+                { data: "url",name:'url',orderable:false},
+                { data: "status_name",name:'status',searchable:false},
             ]
         });
 

@@ -2,6 +2,7 @@
    namespace app\admin\logic;
    use app\admin\logic\MenuLogic;
    use app\admin\model\AdminMenu;
+   use think\Debug;
    use think\Validate;
 
    /**
@@ -55,25 +56,12 @@
          */
 		public function getTableList($get)
         {
-            if(isset($get['order'])){ //排序
-                $order = [];
-                foreach($get['order'] as $k=>$v){
-                    $order[$get['columns'][$v['column']]['name']] = $v['dir'];
-                }
-                $this->model->order($order);
-            }
-            $list = $this->model
-                         ->limit($get['start'],$get['length'])
-                         ->select();
-            foreach($list as $k=>&$v){
+            $data =  $this->model->getTableList($get);
+            foreach($data['data'] as $k=>&$v){
                 $v->status_name = $v->status_name;
                 $v->pid_name = $v->pid_name;
                 $v = $v->toArray();
             }
-            $data['data'] = $list;
-            $data['recordsFiltered'] = $this->model->count('id');
-            $data['recordsTotal'] = $this->model->count('id');
-            $data['draw'] = $get['draw'];
             return $data;
         }
 

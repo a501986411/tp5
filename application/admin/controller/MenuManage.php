@@ -32,8 +32,7 @@ class MenuManage extends App
 	{
 		$logic = new AdminMenuLogic(new AdminMenu());
 		$list = $logic->getMenuSelect();
-		$menuList = $logic->getList();
-		return view('',['pMenu'=>$list,'menuList'=>$menuList]);
+		return view('',['pMenu'=>$list]);
 	}
 	/**
 	 * 改变菜单状态

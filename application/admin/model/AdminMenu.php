@@ -7,9 +7,7 @@
  * Time: 10:41
  */
 namespace app\admin\model;
-use think\Model;
-
-class AdminMenu extends Model
+class AdminMenu extends Base
 {
 	protected $_status_one = ['id' => 1, 'name' => '启用'];
 	protected $_status_two = ['id' => 2, 'name' => '停用'];
