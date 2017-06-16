@@ -7,32 +7,6 @@
         is_null : function(data) { //判断空
             return (data == "" || data == undefined || data == null || data == 0 || data == {} || data==[]) ? true : false;
         },
-        dialogMsg :function(options){ //弹出消息提示框
-            var defaults = {
-                size:BootstrapDialog.SIZE_SMALL,
-                title:'提示',
-                message:'',
-                autoClose:true,
-                timeClose:1500,
-                data:{},
-                callBack:function(){
-                }
-            }
-            var setting = $.extend(defaults,options);
-            var dlg = BootstrapDialog.show({
-                size:setting.size,
-                title: setting.title,
-                message: setting.message,
-                onhide: function(){
-                    setting.callBack(setting.data);
-                }
-            });
-            if(setting.autoClose){
-                setTimeout(function(){
-                    dlg.close();
-                },setting.timeClose);
-            }
-        },
         reload:function(){
             window.location.reload();
         }

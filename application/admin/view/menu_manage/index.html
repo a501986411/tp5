@@ -13,6 +13,7 @@
         <table id="menu_table" class="table table-border table-bordered table-hover table-bg table-sort">
             <thead>
             <tr class="text-c">
+                <th width="80"><input type="checkbox" id="selectAll"></th>
                 <th width="80">名称</th>
                 <th width="100">上级菜单名称</th>
                 <th width="100">URL</th>
@@ -24,21 +25,30 @@
 </div>
 {include file='public:_footer'/}
 <script>
+    var $selectAll = $('#selectAll');
     $(document).ready(function(){
         var $table = $("#menu_table");
         var $addMenu = $('#add_menu');
         var $useTrue = $('#use_true');
         var $useFalse = $('#use_false');
-        $table.dataTable({
+
+        var tableObj = $table.DataTable({
             dom: '<"top"lf>rt<"bottom"ip><"clear">',
             serverSide: true,
             ajax:'{:url("getList")}',
+            order:[[ 1, 'asc' ]],
+            autoWidth: false,
+            deferRender:true,
             columns: [
+                { data:null,orderable:false,searchable:false,className:'text-c td',
+                    render:function(data, type, row, meta){
+                    return '<input type="checkbox" onclick="checkSelect(this)" class="ckbx" value="'+row.id+'">';
+                }},
                 { data: "name",name:'name'},
                 { data: "pid_name",orderable:false,searchable:false},
                 { data: "url",name:'url',orderable:false},
                 { data: "status_name",name:'status',searchable:false},
-            ]
+            ],
         });
 
 
@@ -66,42 +76,50 @@
 
         //停用操作
         $useFalse.click(function(){
-            var selectRow = $table.bootstrapTable('getSelections');
-            if($.is_null(selectRow)){
+            var pkArr = [];
+            $('.ckbx').each(function(){
+                if($(this).prop('checked')){
+                    pkArr.push($(this).val());
+                }
+            });
+            if($.is_null(pkArr)){
                 return false;
             } else {
-                var pkArr = [];
-                $.each(selectRow,function(k,v){
-                    pkArr.push(v.id);
-                });
                 $.post("{:url('/MenuManage/operateStatus')}",{pkArr:JSON.stringify(pkArr),status:2},function(result){
+                    $.Huimodalalert(result.msg,2000);
                     if(result.success){
-                        $.reload();
+                        tableObj.ajax.reload();
                     }
-                    $.dialogMsg({message:result.msg});
+
                 });
             }
         });
-        //停用操作
+        //启用操作
         $useTrue.click(function(){
-            var selectRow = $table.bootstrapTable('getSelections');
-            if($.is_null(selectRow)){
+            var pkArr = [];
+            $('.ckbx').each(function(){
+                if($(this).prop('checked')){
+                    pkArr.push($(this).val());
+                }
+            });
+            if($.is_null(pkArr)){
                 return false;
             } else {
-                var pkArr = [];
-                $.each(selectRow,function(k,v){
-                    pkArr.push(v.id);
-                });
                 $.post("{:url('/MenuManage/operateStatus')}",{pkArr:JSON.stringify(pkArr),status:1},function(result){
+                    $.Huimodalalert(result.msg,2000);
                     if(result.success){
-                        $.reload();
+                        tableObj.ajax.reload();
                     }
-                    $.dialogMsg({message:result.msg});
                 });
             }
         });
-    });
 
+    });
+    function checkSelect (obj){
+        if(!$(obj).prop('checked')){
+            $selectAll.prop('checked',false);
+        }
+    }
 </script>
 
 <script type="text/javascript" src="{$Think.const.STATIC_PATH}lib/datatables/1.10.0/jquery.dataTables.min.js"></script>

@@ -42,7 +42,7 @@ class Base extends Model
             }
         }
         $data['data'] = $this->limit($get['start'],$get['length'])->select(); //查询
-        $data['recordsFiltered'] = count($data['data']);//符合条件的记录数
+        $data['recordsFiltered'] = !empty($where) ? $this->where($where,'like','%'.$get['search']['value'].'%')->count('id') : $this->count('id');//符合条件的记录数
         $data['recordsTotal'] = $data['recordsFiltered']; //总记录数
         $data['draw'] = $get['draw'];
         return $data;
