@@ -14,11 +14,11 @@
          */
         public function index()
         {
-            //登录页面 不需要模板布局
+            //不需要模板布局
             $this->view->engine->layout(false);
             $logic = new ShowMenuLogic(new AdminMenu());
             $menuList = $logic->getTreeMenuList();
-            return view('',['menuList'=>$menuList]);
+            return view('',['menuList'=>$menuList,'userInfo'=>json_decode(cookie('user'),true)]);
         }
 
         /**

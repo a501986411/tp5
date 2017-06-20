@@ -105,4 +105,19 @@ class AdminUserLogic extends Model
         cookie(null,'admin_');
         return retTrue();
     }
+
+    /**
+     * 获取
+     * @access public
+     * @param $id 用户id
+     * @return array|false|\PDOStatement|string|Model
+     * @author knight
+     */
+    public function getUserBase($id)
+    {
+        $userInfo = $this->model
+            ->where('id',$id)
+            ->find();
+        return $userInfo;
+    }
 }

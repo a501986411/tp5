@@ -111,4 +111,21 @@ class AdminUser extends App
             throw new Exception(lang('error param'));
         }
     }
+
+    /**
+     * 获取用户基础信息
+     * @access public
+     * @return array|false|\PDOStatement|string|\think\Model
+     * @author knight
+     */
+    public function getUserBase()
+    {
+       if(Request::instance()->has('id') && Request::instance()->isPost()){
+            $id = input('id');
+            $logic = new AdminUserLogic(new \app\admin\model\AdminUser());
+            return $logic->getUserBase($id);
+       }else {
+           throw new Exception(lang('error param'));
+       }
+    }
 }
