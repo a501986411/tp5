@@ -58,7 +58,37 @@
 
         //新增按钮
         $addMenu.click(function(){
+<<<<<<< HEAD
+            var w = 800;
+            var h=($(window).height() - 150);
+            dialogIndex = layer.open({
+                id:'dialog',
+                type:1,
+                content:$("#menu_info_dlg").html(),
+                area: [w+'px', h +'px'],
+                fix: false, //不固定
+                maxmin: true,
+                shade:0.4,
+                title: '新增菜单',
+                btn:['确定','取消'],
+                btnAlign: '1',
+                yes:function(){
+                    var options = {};
+                    options.url = formSbUrl;
+                    options.success = function(result){
+                        $.Huimodalalert(result.msg,2000);
+                        if(result.success){
+                            tableObj.ajax.reload();
+                            layer.close(dialogIndex);
+                        }
+                    }
+                    var $form = $('#dialog').find('#menu_info_fm');
+                    $form.formSubmit(options);
+                },
+            });
+=======
             setDialog('新增菜单',tableObj);
+>>>>>>> bfccc54bad153ffef1fce4ee5e5809d921c5d75d
         });
 
         //停用操作
