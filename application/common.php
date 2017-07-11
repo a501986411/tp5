@@ -38,3 +38,49 @@ function debug($data)
         exit;
     }
 }
+
+/**
+ * xml格式转数组
+ * @access public
+ * @param $xml
+ * @return mixed
+ * @author knight
+ */
+function xml2Array($xml)
+{
+    $obj = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
+    $arr = json_decode(json_encode($obj),true);
+    return $arr;
+}
+
+/**
+ * 数组转xml格式
+ * @access public
+ * @param $arr
+ * @param int $dom
+ * @param int $item
+ * @return string
+ * @author knight
+ */
+function array2xml($arr, $dom = 0, $item = 0)
+{
+    if (!$dom) {
+        $dom = new DOMDocument("1.0");
+    }
+    if (!$item) {
+        $item = $dom->createElement("root");
+        $dom->appendChild($item);
+    }
+    foreach ($arr as $key => $val) {
+        $itemx = $dom->createElement(is_string($key) ? $key : "item");
+        $item->appendChild($itemx);
+        if (!is_array($val)) {
+            $text = $dom->createTextNode($val);
+            $itemx->appendChild($text);
+
+        } else {
+            arrayToXml($val, $dom, $itemx);
+        }
+    }
+    return $dom->saveXML();
+}
