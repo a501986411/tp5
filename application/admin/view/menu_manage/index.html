@@ -58,7 +58,7 @@
 
         //新增按钮
         $addMenu.click(function(){
-<<<<<<< HEAD
+//<<<<<<< HEAD
             var w = 800;
             var h=($(window).height() - 150);
             dialogIndex = layer.open({
@@ -86,9 +86,6 @@
                     $form.formSubmit(options);
                 },
             });
-=======
-            setDialog('新增菜单',tableObj);
->>>>>>> bfccc54bad153ffef1fce4ee5e5809d921c5d75d
         });
 
         //停用操作
@@ -140,51 +137,6 @@
         if(!$(obj).prop('checked')){
             $selectAll.prop('checked',false);
         }
-    }
-
-    /**
-     * 设置弹框
-     * @param title
-     * @param tableObj
-     * @param formData
-     */
-    function setDialog(title,tableObj,formData)
-    {
-        formData = $.is_null(formData) ?  {} : formData;
-        var formSbUrl = "{:url('save')}";
-        var dialogIndex;
-        var w = 800;
-        var h=($(window).height() - 150);
-        dialogIndex = layer.open({
-            id:'dialog',
-            type:1,
-            shadeClose:true,
-            content:$("#menu_info_dlg").html(),
-            area: [w+'px', h +'px'],
-            fix: false, //不固定
-            maxmin: true,
-            shade:0.4,
-            title: title,
-            btn:['确定','取消'],
-            btnAlign: '1',
-            yes:function(){
-                var options = {};
-                options.url = formSbUrl;
-                options.success = function(result){
-                    $.Huimodalalert(result.msg,2000);
-                    if(result.success){
-                        tableObj.ajax.reload();
-                        layer.close(dialogIndex);
-                    }
-                }
-                var $form = $('#dialog').find('#menu_info_fm');
-                $form.formSubmit(options);
-            },
-            success:function(){
-                var $form = $('#dialog').find('#menu_info_fm');
-                $form.formLoad(formData);
-            }
-        });
     }
 </script>
 
